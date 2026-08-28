@@ -16,6 +16,7 @@ body {
 
 :root {
     --pcolor: #730017;
+    --dark: #181818;
 }
 
 
@@ -74,16 +75,15 @@ body {
     padding-inline: 15px;
     font-size: 23px;
     color: white;
+    cursor: pointer;
 }
 
 .menubtn {
-    border-left: 1px solid white;;
-    cursor: pointer;
+    border-left: 1px solid white;
 }
 
 .logicon {
-    border-left: 1px solid white;;
-    cursor: pointer;
+    border-left: 1px solid white;
 }
 
 .loginbtn {
@@ -269,4 +269,152 @@ body {
         font-size: 20px;
     }
 
+}
+
+/* footer */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    background: var(--dark);
+    color: white;
+    padding: 10px 20px;
+
+}
+
+.footer1 {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-block: 30px;
+}
+
+.foot1 .logoimage {
+    margin-bottom: 20px;
+}
+
+.foot1 p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.footer-sotial-links {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-sotial-links a {
+    font-size: 16px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+}
+
+.foot2 h2 {
+    margin-bottom: 30px;
+    font-size: 25px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.foot3 h2 {
+    margin-bottom: 30px;
+    font-size: 25px;
+}
+
+.foot3 p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.footerform {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footerform input,
+.footerform button {
+    padding: 14px 20px;
+    border-radius: 40px;
+    border: none;
+}
+
+#foot-email {
+    background: transparent;
+    border: 1px solid var(--pcolor);
+    color: white;
+}
+
+#foot-email:focus {
+    outline: none;
+}
+
+#sub-btn {
+    background: var(--pcolor);
+    color: white;
+}
+
+.footer2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    padding-block: 30px;
+    margin: 0 auto;
+    width: 100%;
+    border-top: 1px solid gray;
+}
+
+.footer2 p {
+    font-size: 15px;
+}
+
+.footer2 div {
+    display: flex;
+    gap: 10px;
+}
+
+.footer2 div a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+
+@media (max-width:950px) {
+    .footer1{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width:560px) {
+    .footer1{
+        grid-template-columns: 1fr;
+    }
+
+    .footer2{
+        flex-direction: column;
+        gap: 15px;
+    }
 }
