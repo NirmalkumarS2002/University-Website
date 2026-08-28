@@ -118,7 +118,36 @@
             border: none;
             color: white;
             border-radius: 7px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 15px;
         }
+
+        .herobtn span{
+            transform: rotate(-50deg);
+            transition: .5s ease;
+            font-size: 22px;
+        }   
+
+         .herobtn::before{
+            content:"";
+            height: 100%;
+            width: 0%;
+            background: black;
+            transition:width .5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+         }
+
+         .herobtn:hover::before{
+            width: 100%;
+         }
+          .herobtn:hover span{
+            transform: rotate(0deg);
+          }
 
 
         @media (max-width:1100px) {
@@ -172,7 +201,7 @@
             <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
 
             <ul class="menus">
-                <li><a href="home.html">Home</a></li>
+                <li><a href="home.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="blog.html">Blogs</a></li>
                 <li><a href="service.html">Services</a></li>
@@ -268,7 +297,7 @@
                 </div>
             </div>
 
-            <div class="foot2">
+            <div class="foot2 foot4">
 
                 <h2>Quick Links</h2>
                 <div class="links">
@@ -281,7 +310,7 @@
 
             </div>
 
-            <div class="foot2">
+            <div class="foot2 foot4">
 
                 <h2>Our Campus</h2>
                 <div class="links">
@@ -294,7 +323,7 @@
 
             </div>
 
-            <div class="foot3">
+            <div class="foot3 foot4">
                 <h2>Newsletter</h2>
                 <p>Stay connected with the latest news, events, and updates from our university.</p>
 

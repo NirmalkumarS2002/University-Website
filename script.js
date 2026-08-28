@@ -11,3 +11,15 @@ closebtn.addEventListener("click", () => {
     sidebar.classList.remove("active")
 })
 
+let navbar=document.querySelector(".navbar")
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>400){
+        navbar.classList.add("active")
+    }
+
+    else{
+        navbar.classList.remove("active")
+    }
+
+})
