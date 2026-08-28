@@ -21,6 +21,9 @@ body {
 
 
 .navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 50px;
@@ -50,7 +53,7 @@ body {
 
 .menus li a {
     text-decoration: none;
-    color: var(--pcolor);
+    color: white;
     font-size: 15px;
     text-transform: uppercase;
     font-weight: bold;
@@ -70,15 +73,16 @@ body {
 .navicons div span {
     padding-inline: 15px;
     font-size: 23px;
+    color: white;
 }
 
 .menubtn {
-    border-left: 1px solid rgb(7, 0, 0);
+    border-left: 1px solid white;;
     cursor: pointer;
 }
 
 .logicon {
-    border-left: 1px solid rgb(7, 0, 0);
+    border-left: 1px solid white;;
     cursor: pointer;
 }
 
@@ -114,7 +118,7 @@ body {
     background: gray;
     padding: 60px 20px;
     box-sizing: border-box;
-    z-index: 999;
+    z-index: 99999;
     scrollbar-width: none;
     -ms-overflow-style: none;
     overflow-y: auto;
