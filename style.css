@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+:root {
+    --pcolor: #730017;
+}
+
+
+
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+
+.logoimage {
+    display: flex;
+    align-items: center;
+}
+
+.logoimage img {
+    width: 160px;
+}
+
+.menus {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.menus li {
+    list-style: none;
+}
+
+.menus li a {
+    text-decoration: none;
+    color: var(--pcolor);
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.navicons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+.navicons div {
+    display: flex;
+}
+
+.navicons div span {
+    padding-inline: 15px;
+    font-size: 23px;
+}
+
+.menubtn {
+    border-left: 1px solid rgb(7, 0, 0);
+    cursor: pointer;
+}
+
+.logicon {
+    border-left: 1px solid rgb(7, 0, 0);
+    cursor: pointer;
+}
+
+.loginbtn {
+    padding: 15px 40px;
+    background: var(--pcolor);
+    color: white;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    border-radius: 40px;
+}
+
+.loginbtn span {
+    font-size: 20px;
+}
+
+.logicon {
+    display: none;
+}
+
+/* sidebar */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100vh;
+    background: gray;
+    padding: 60px 20px;
+    box-sizing: border-box;
+    z-index: 999;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: .5s ease;
+}
+
+.sidebar.active {
+    transform: translateX(0%);
+}
+
+.closebtn {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 10px;
+    font-size: 22px;
+    background: var(--pcolor);
+    color: white;
+    cursor: pointer;
+}
+
+.sidebar .logoimage img {
+    margin: 10px auto;
+}
+
+.sidebar>p {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sideimgwrap {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.sideimgwrap img {
+    width: 100%;
+    height: 100%;
+}
+
+.sidebtn {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    background: var(--pcolor);
+    color: white;
+    padding: 13px 50px;
+    border: none;
+    font-size: 14px;
+    border-radius: 40px;
+    text-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-details>a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sidebar-details>a span {
+    font-size: 18px;
+}
+
+.sideicons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sideicons p {
+    font-size: 14px;
+}
+
+.footer-sotial-links {
+    display: flex;
+    gap: 5px;
+}
+
+.sidemenus {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.sidemenus li {
+    list-style: none;
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--pcolor);
+}
+
+.sidemenus li a {
+    text-decoration: none;
+    color: var(--pcolor);
+    font-size: 15px;
+}
+
+
+@media (max-width:1000px) {
+
+    .navbar {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .loginbtn {
+        display: none;
+    }
+
+    .logicon {
+        display: block;
+    }
+
+    .menus {
+        display: none;
+    }
+
+
+    .sidemenus {
+        display: flex;
+    }
+}
+
+@media (max-width:600px) {
+    .logoimage img {
+        width: 130px;
+    }
+
+    .navbar {
+        padding: 10px;
+    }
+
+    .navicons div span {
+        padding-inline: 10px;
+        font-size: 20px;
+    }
+
+}
