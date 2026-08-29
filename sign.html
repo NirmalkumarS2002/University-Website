@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly University - Sign Up</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        :root {
+            --pcolor: #730017;
+            --dark: #080808;
+            --sub: #6b6b6b;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* ===== full page split, no floating card, no chart strip ===== */
+        .login-wrap {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* left: full bleed campus photo with quote */
+        .login-visual {
+            position: relative;
+            background-image: linear-gradient(rgba(8, 8, 8, 0.55), rgba(115, 0, 23, 0.55)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        .login-visual .logoimage img {
+            width: 150px;
+        }
+
+        .visual-quote {
+            max-width: 420px;
+        }
+
+        .visual-quote span.material-symbols-outlined {
+            color: white;
+            font-size: 40px;
+            opacity: .6;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .visual-quote p {
+            font-family: "Acme", sans-serif;
+            color: white;
+            font-size: 26px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .visual-stats {
+            display: flex;
+            gap: 30px;
+        }
+
+        .visual-stats div h3 {
+            font-family: "Acme", sans-serif;
+            color: white;
+            font-size: 26px;
+        }
+
+        .visual-stats div p {
+            color: #f0dede;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        /* right: plain white pane, editorial underline form, no boxed inputs */
+        .login-pane {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .login-form-wrap {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--pcolor);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .login-eyebrow::before {
+            content: "";
+            width: 26px;
+            height: 2px;
+            background: var(--pcolor);
+        }
+
+        .login-form-wrap h1 {
+            font-family: "Acme", sans-serif;
+            font-size: 40px;
+            color: var(--dark);
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .login-form-wrap>p {
+            color: var(--sub);
+            font-size: 14.5px;
+            margin-bottom: 26px;
+        }
+
+        /* tab-style role switch, reusing the underline-on-hover language from the navbar menu */
+        .role-tabs {
+            display: flex;
+            gap: 30px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 26px;
+        }
+
+        .role-tab {
+            background: none;
+            border: none;
+            padding-bottom: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--sub);
+            cursor: pointer;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: .3px;
+        }
+
+        .role-tab::before {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            height: 2px;
+            width: 0%;
+            background: var(--pcolor);
+            transition: .35s ease;
+        }
+
+        .role-tab.active {
+            color: var(--pcolor);
+        }
+
+        .role-tab.active::before {
+            width: 100%;
+        }
+
+        /* two-up row for name + email on wider screens */
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* underline inputs, no boxes, no left icons */
+        .field {
+            margin-bottom: 22px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .uline {
+            position: relative;
+        }
+
+        .uline input {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #e4dede;
+            background: transparent;
+            padding: 6px 30px 10px 0;
+            font-size: 15px;
+            color: var(--dark);
+            outline: none;
+            transition: .3s ease;
+        }
+
+        .uline input:focus {
+            border-color: var(--pcolor);
+        }
+
+        .uline .passeye {
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            font-size: 19px;
+            color: #a3a3a3;
+            cursor: pointer;
+        }
+
+        .errormsg {
+            color: #c0263a;
+            margin-top: 8px;
+            font-size: 11.5px;
+        }
+
+        /* reuse the exact herobtn signature button from the rest of the site */
+        .log-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 30px;
+            background: var(--pcolor);
+            border: none;
+            color: white;
+            border-radius: 7px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        .log-btn span {
+            transform: rotate(-50deg);
+            transition: .5s ease;
+            font-size: 22px;
+        }
+
+        .log-btn::before {
+            content: "";
+            height: 100%;
+            width: 0%;
+            background: black;
+            transition: width .5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .log-btn:hover::before {
+            width: 100%;
+        }
+
+        .log-btn:hover span {
+            transform: rotate(0deg);
+        }
+
+        .divider-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 26px 0 20px;
+        }
+
+        .divider-row::before,
+        .divider-row::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: #eee;
+        }
+
+        .divider-row span {
+            font-size: 11px;
+            color: var(--sub);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            white-space: nowrap;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .social-row a {
+            flex: 1;
+            height: 46px;
+            border: 1px solid #eee;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 16px;
+            transition: .3s ease;
+        }
+
+        .social-row a:hover {
+            border-color: var(--pcolor);
+            color: var(--pcolor);
+            background: #73001708;
+        }
+
+        .login-foot {
+            text-align: center;
+        }
+
+        .login-foot p {
+            font-size: 13.5px;
+            color: var(--sub);
+            margin-bottom: 18px;
+        }
+
+        .login-foot p a {
+            color: var(--pcolor);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-foot p a:hover {
+            text-decoration: underline;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12.5px;
+            text-decoration: none;
+            color: var(--sub);
+        }
+
+        .home-btn:hover {
+            color: var(--pcolor);
+        }
+
+        .home-btn span {
+            font-size: 17px;
+        }
+
+        @media (max-width:900px) {
+            .login-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .login-visual {
+                display: none;
+            }
+
+            .login-pane {
+                padding: 40px 25px;
+            }
+        }
+
+        @media (max-width:560px) {
+            .field-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width:400px) {
+            .login-form-wrap h1 {
+                font-size: 32px;
+            }
+        }
+
+        .popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 8, 8, .55);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .popup.active {
+            display: flex;
+        }
+
+        .popup-box {
+            width: 340px;
+            background: white;
+            color: var(--dark);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(8, 8, 8, 0.25);
+        }
+
+        .success {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(30, 158, 90, 0.12);
+            color: #1e9e5a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 16px;
+        }
+
+        .popup-box h2 {
+            font-family: "Acme", sans-serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .popup-box p {
+            color: var(--sub);
+            margin-bottom: 22px;
+            font-size: 13px;
+        }
+
+        .popup-box button {
+            padding: 12px 34px;
+            border: none;
+            background: var(--pcolor);
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .popup-box button:hover {
+            background: var(--dark);
+        }
+
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="popup" id="popup">
+        <div class="popup-box">
+            <span class="material-symbols-outlined success">check_circle</span>
+            <h2>Account Created</h2>
+            <p>Welcome to Stackly. Click OK to log in.</p>
+            <button id="okBtn">OK</button>
+        </div>
+    </div>
+
+    <div class="login-wrap">
+
+        <div class="login-visual">
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="Stackly University Logo"></a>
+
+            <div class="visual-quote">
+                <span class="material-symbols-outlined">format_quote</span>
+                <p>Create your account and become part of a community of thinkers, builders and lifelong
+                    learners.</p>
+
+                <div class="visual-stats">
+                    <div>
+                        <h3>12.5K+</h3>
+                        <p>Students</p>
+                    </div>
+                    <div>
+                        <h3>85+</h3>
+                        <p>Programs</p>
+                    </div>
+                    <div>
+                        <h3>40+</h3>
+                        <p>Countries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-pane">
+            <div class="login-form-wrap">
+
+                <p class="login-eyebrow">Join Stackly</p>
+                <h1>Create Account</h1>
+                <p>Sign up to access your student or staff dashboard.</p>
+
+                <div class="role-tabs">
+                    <button class="role-tab active" data-role="Student">Student</button>
+                    <button class="role-tab" data-role="Faculty">Faculty / Staff</button>
+                </div>
+
+                <div class="form-box field">
+                    <label>Full Name</label>
+                    <div class="uline">
+                        <input type="text" placeholder="Enter your name" id="log-name">
+                    </div>
+                    <p class="errormsg"></p>
+                </div>
+
+                <div class="form-box field">
+                    <label>Email Address</label>
+                    <div class="uline">
+                        <input type="email" placeholder="you@stackly.edu" id="log-email">
+                    </div>
+                    <p class="errormsg"></p>
+                </div>
+
+                <div class="form-box field">
+                    <label>Password</label>
+                    <div class="uline">
+                        <input type="password" placeholder="Create a password" id="log-pass">
+                        <span class="material-symbols-outlined passeye">visibility_off</span>
+                    </div>
+                    <p class="errormsg"></p>
+                </div>
+
+                <div class="form-box field">
+                    <label>Confirm Password</label>
+                    <div class="uline">
+                        <input type="password" placeholder="Re-enter your password" id="log-conpass">
+                        <span class="material-symbols-outlined passeye">visibility_off</span>
+                    </div>
+                    <p class="errormsg"></p>
+                </div>
+
+                <button class="log-btn">Create Account<span
+                        class="material-symbols-outlined">arrow_right_alt</span></button>
+
+                <div class="divider-row"><span>Or continue with</span></div>
+
+                <div class="social-row">
+                    <a href="404.html"><i class="fa-brands fa-google"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-microsoft"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-apple"></i></a>
+                </div>
+
+                <div class="login-foot">
+                    <p>Already have an account? <a href="login.html">Log In</a></p>
+                    <a href="index.html" class="home-btn"><span
+                            class="material-symbols-outlined">home</span>Back to Home</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const nameInput = document.querySelector("#log-name");
+        const email = document.querySelector("#log-email");
+        const password = document.querySelector("#log-pass");
+        const confirmPassword = document.querySelector("#log-conpass");
+        const loginBtn = document.querySelector(".log-btn");
+
+        const roleTabs = document.querySelectorAll(".role-tab");
+        const eyeIcons = document.querySelectorAll(".passeye");
+        const errorMsgs = document.querySelectorAll(".errormsg");
+
+        const popup = document.querySelector("#popup");
+        const okBtn = document.querySelector("#okBtn");
+
+        let selectedRole = "Student";
+
+        roleTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                roleTabs.forEach((t) => { t.classList.remove("active") })
+                tab.classList.add("active")
+                selectedRole = tab.dataset.role;
+            })
+        })
+
+        eyeIcons.forEach((eye, index) => {
+            eye.addEventListener("click", () => {
+                let input = index === 0 ? password : confirmPassword;
+                if (input.type === "password") {
+                    input.type = "text";
+                    eye.textContent = "visibility";
+                } else {
+                    input.type = "password";
+                    eye.textContent = "visibility_off";
+                }
+            })
+        })
+
+        nameInput.addEventListener("input", () => {
+            nameInput.value = nameInput.value.replace(/[^A-Za-z\s]/g, "");
+        });
+
+        loginBtn.addEventListener("click", () => {
+
+            let isvalid = true;
+            let logregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            let nameRegex = /^[A-Za-z\s]+$/
+
+            let fn = nameInput.value.trim()
+            let fe = email.value.trim()
+            let fp = password.value.trim()
+            let fcp = confirmPassword.value.trim()
+
+            errorMsgs.forEach((error) => { error.textContent = ""; })
+
+            if (fn == "") {
+                errorMsgs[0].textContent = "Enter Your Name";
+                isvalid = false;
+            }
+            else if (!nameRegex.test(fn)) {
+                errorMsgs[0].textContent = "Only letters are allowed";
+                isvalid = false;
+            }
+
+            if (fe == "") {
+                errorMsgs[1].textContent = "Enter Your Email";
+                isvalid = false;
+            }
+            else if (!logregex.test(fe)) {
+                errorMsgs[1].textContent = "Enter Valid Email";
+                isvalid = false;
+            }
+
+            if (fp == "") {
+                errorMsgs[2].textContent = "Enter Your Password";
+                isvalid = false;
+            }
+            else if (fp.length < 6) {
+                errorMsgs[2].textContent = "Password must be at least 6 characters";
+                isvalid = false;
+            }
+
+            if (fcp == "") {
+                errorMsgs[3].textContent = "Confirm Your Password";
+                isvalid = false;
+            }
+            else if (fp !== fcp) {
+                errorMsgs[3].textContent = "Passwords do not match";
+                isvalid = false;
+            }
+
+            if (isvalid) {
+                popup.classList.add("active")
+
+                okBtn.addEventListener("click", () => {
+                    localStorage.setItem("useremail", email.value)
+                    window.location.href = "login.html"
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

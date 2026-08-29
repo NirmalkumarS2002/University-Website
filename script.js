@@ -1,3 +1,4 @@
+// navbar
 let sidebar = document.querySelector(".sidebar")
 let menubtn = document.querySelector(".menubtn")
 let closebtn = document.querySelector(".closebtn")
@@ -11,6 +12,8 @@ closebtn.addEventListener("click", () => {
     sidebar.classList.remove("active")
 })
 
+// navbar scroller
+
 let navbar=document.querySelector(".navbar")
 window.addEventListener("scroll",()=>{
 
@@ -22,4 +25,13 @@ window.addEventListener("scroll",()=>{
         navbar.classList.remove("active")
     }
 
+})
+
+// errorpage
+
+let errorpage=document.querySelectorAll(".errorpage")
+errorpage.forEach((err)=>{
+    err.addEventListener("click",()=>{
+         window.location.href="404.html"
+    })
 })

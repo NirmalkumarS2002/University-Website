@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University About - Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+<link rel="stylesheet" href="style.css">
+<style>
+    :root {
+        --pcolor: #730017;
+        --dark: #080808;
+    }
+
+    .blg-wrap{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Nunito Sans", sans-serif;
+    }
+
+    .blg-wrap {
+        overflow-x: hidden;
+        color: var(--dark);
+    }
+
+    .blg-wrap .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding-inline: 20px;
+    }
+
+    .blg-wrap .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--pcolor);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+
+    .blg-wrap .eyebrow::before {
+        content: "";
+        width: 30px;
+        height: 3px;
+        background: var(--pcolor);
+        display: inline-block;
+    }
+
+    .blg-wrap h2 {
+        font-family: "Acme", sans-serif;
+        font-size: 44px;
+        line-height: 1.1;
+        text-transform: uppercase;
+        color: var(--dark);
+        margin-bottom: 18px;
+    }
+
+    .blg-wrap .btn-primary {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 32px;
+        background: var(--pcolor);
+        border: none;
+        color: white;
+        border-radius: 7px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .blg-wrap .btn-primary span {
+        transform: rotate(-50deg);
+        transition: .5s ease;
+        font-size: 20px;
+    }
+
+    .blg-wrap .btn-primary::before {
+        content: "";
+        height: 100%;
+        width: 0%;
+        background: black;
+        transition: width .5s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .blg-wrap .btn-primary:hover::before {
+        width: 100%;
+    }
+
+    .blg-wrap .btn-primary:hover span {
+        transform: rotate(0deg);
+    }
+
+    .blg-wrap .tag {
+        display: inline-block;
+        background: var(--pcolor);
+        color: white;
+        font-size: 11.5px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 6px 14px;
+        border-radius: 30px;
+    }
+
+    .blg-wrap .meta {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 13.5px;
+        color: #6a6a6a;
+        font-weight: 700;
+    }
+
+    .blg-wrap .meta span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .blg-wrap .meta i {
+        color: var(--pcolor);
+    }
+
+    /* ---------- 1. PAGE BANNER ---------- */
+    .blg-banner {
+        position: relative;
+        min-height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    }
+
+    .blg-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(8, 8, 8, 0.65);
+    }
+
+    .blg-banner-content {
+        position: relative;
+        z-index: 2;
+        padding-top: 90px;
+    }
+
+    .blg-banner-content .eyebrow {
+        justify-content: center;
+        color: #ffb3bd;
+    }
+
+    .blg-banner-content .eyebrow::before {
+        background: #ffb3bd;
+    }
+
+    .blg-banner-content h1 {
+        font-family: "Acme", sans-serif;
+        font-size: 66px;
+        text-transform: uppercase;
+        color: white;
+        line-height: 1;
+        margin-bottom: 18px;
+    }
+
+    .blg-banner-content .crumb {
+        color: #e7e7e7;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .blg-banner-content .crumb span {
+        color: var(--pcolor);
+        background: white;
+        padding: 0 8px;
+        border-radius: 3px;
+        margin: 0 6px;
+    }
+
+    /* ---------- 2. FEATURED POST ---------- */
+    .blg-featured {
+        padding: 100px 0;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .blg-featured .imgbox {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .blg-featured .imgbox img {
+        width: 100%;
+        height: 460px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .blg-featured .imgbox .tag {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    .blg-featured .content .meta {
+        margin-bottom: 18px;
+    }
+
+    .blg-featured .content h2 {
+        font-size: 38px;
+    }
+
+    .blg-featured .content p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #4a4a4a;
+        margin-bottom: 26px;
+    }
+
+    /* ---------- 3. LATEST ARTICLES GRID ---------- */
+    .blg-grid-section {
+        padding: 100px 0;
+        background: #f8f4f4;
+    }
+
+    .blg-grid-head {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 60px;
+    }
+
+    .blg-grid-head .eyebrow {
+        justify-content: center;
+    }
+
+    .blg-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .blg-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #eee;
+        transition: .4s ease;
+    }
+
+    .blg-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(115, 0, 23, 0.12);
+        border-color: var(--pcolor);
+    }
+
+    .blg-card .imgbox {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+    }
+
+    .blg-card .imgbox img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: .5s ease;
+    }
+
+    .blg-card:hover .imgbox img {
+        transform: scale(1.08);
+    }
+
+    .blg-card .imgbox .tag {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+    }
+
+    .blg-card-body {
+        padding: 26px 24px 30px;
+    }
+
+    .blg-card-body .meta {
+        margin-bottom: 14px;
+        font-size: 12.5px;
+    }
+
+    .blg-card-body h3 {
+        font-family: "Acme", sans-serif;
+        font-size: 20px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        color: var(--dark);
+        line-height: 1.3;
+    }
+
+    .blg-card-body p {
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: #5a5a5a;
+        margin-bottom: 16px;
+    }
+
+    .blg-card-body .readmore {
+        font-size: 13.5px;
+        font-weight: 800;
+        color: var(--pcolor);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* ---------- 4. CATEGORIES ---------- */
+    .blg-categories {
+        padding: 90px 0;
+    }
+
+    .blg-cat-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+    }
+
+    .blg-cat-card {
+        text-align: center;
+        padding: 34px 16px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        transition: .4s ease;
+        cursor: pointer;
+    }
+
+    .blg-cat-card:hover {
+        background: var(--pcolor);
+        border-color: var(--pcolor);
+    }
+
+    .blg-cat-card:hover h4,
+    .blg-cat-card:hover p {
+        color: white !important;
+    }
+
+    .blg-cat-card i {
+        font-size: 30px;
+        color: var(--pcolor);
+        margin-bottom: 16px;
+        transition: .4s ease;
+    }
+
+    .blg-cat-card:hover i {
+        color: white;
+    }
+
+    .blg-cat-card h4 {
+        font-size: 15px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        color: var(--dark);
+    }
+
+    .blg-cat-card p {
+        font-size: 13px;
+        color: #6a6a6a;
+    }
+
+    /* ---------- 5. NEWSLETTER ---------- */
+    .blg-newsletter {
+        padding: 100px 0;
+        background: var(--dark);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+
+    .blg-newsletter .imgbox img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .blg-newsletter .content {
+        padding-left: 60px;
+    }
+
+    .blg-newsletter .content .eyebrow {
+        color: #ffb3bd;
+    }
+
+    .blg-newsletter .content .eyebrow::before {
+        background: #ffb3bd;
+    }
+
+    .blg-newsletter .content h2 {
+        color: white;
+    }
+
+    .blg-newsletter .content p {
+        color: #c9c9c9;
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 28px;
+    }
+
+    .blg-newsletter-form {
+        display: flex;
+        gap: 12px;
+    }
+
+    .blg-newsletter-form input {
+        flex: 1;
+        padding: 16px 22px;
+        border-radius: 40px;
+        border: 1px solid #444;
+        background: transparent;
+        color: white;
+        font-size: 15px;
+        outline: none;
+    }
+
+    .blg-newsletter-form input::placeholder {
+        color: #999;
+    }
+
+    .blg-newsletter-form button {
+        border-radius: 40px;
+    }
+
+    /* ---------- 6. CTA ---------- */
+    .blg-cta {
+        position: relative;
+        padding: 110px 0;
+        text-align: center;
+        background: url("https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat fixed;
+    }
+
+    .blg-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(115, 0, 23, 0.88);
+    }
+
+    .blg-cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .blg-cta-content h2 {
+        color: white;
+    }
+
+    .blg-cta-content p {
+        color: #f1d9dc;
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 34px;
+    }
+
+    .blg-cta .btn-primary {
+        margin: 0 auto;
+        background: white;
+        color: var(--pcolor);
+    }
+
+    .blg-cta .btn-primary::before {
+        background: var(--dark);
+    }
+
+    .blg-cta .btn-primary:hover {
+        color: white;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:1100px) {
+        .blg-cat-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width:1000px) {
+        .blg-featured {
+            grid-template-columns: 1fr;
+        }
+
+        .blg-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .blg-newsletter {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .blg-newsletter .content {
+            padding-left: 0;
+        }
+
+        .blg-newsletter .container {
+            padding-inline: 20px;
+        }
+
+        .blg-banner-content h1 {
+            font-size: 50px;
+        }
+    }
+
+    @media (max-width:650px) {
+        .blg-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .blg-cat-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .blg-newsletter-form {
+            flex-direction: column;
+        }
+
+        .blg-banner-content h1 {
+            font-size: 36px;
+        }
+
+        h2 {
+            font-size: 30px !important;
+        }
+
+        .blg-featured .content h2 {
+            font-size: 28px !important;
+        }
+    }
+</style>
+</head>
+<body>
+    
+            <header class="header">
+
+        <div class="navbar">
+
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+
+            <ul class="menus">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+
+            <div class="navicons">
+                <div>
+                    <span class="material-symbols-outlined errorpage">call</span>
+                    <span class="material-symbols-outlined logicon">person</span>
+                    <span class="material-symbols-outlined menubtn">menu</span>
+
+                </div>
+                <a href="login.html" class="loginbtn">Login<span class="material-symbols-outlined">login</span></a>
+            </div>
+
+        </div>
+        <div class="sidebar">
+            <span class="material-symbols-outlined closebtn">close</span>
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+
+            <ul class="sidemenus">
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <p>Create engaging and accessible learning environments with a smart university theme built for modern
+                academic institutions.</p>
+            <div class="sideimgwrap">
+                <img src="./src/sideimg.webp" alt="side image">
+                <button class="sidebtn errorpage">Apply Now<span class="material-symbols-outlined">arrow_right_alt</span></button>
+            </div>
+
+            <div class="sidebar-details">
+                <a href="404.html"><span class="material-symbols-outlined">call</span>+91 12345 67890</a>
+                <a href="404.html"><span class="material-symbols-outlined">location_on</span> Yarra Park, Melbourne,
+                    Austraila</a>
+                <div class="sideicons">
+                    <p>follow Us:</p>
+
+                    <div class="footer-sotial-links">
+                        <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+ <div class="blg-wrap">
+
+
+    <!-- 1. PAGE BANNER -->
+    <section class="blg-banner">
+        <div class="blg-banner-content">
+            <p class="eyebrow">Campus Stories</p>
+            <h1>Our Blog</h1>
+            <p class="crumb">Home <span>/</span> Blogs</p>
+        </div>
+    </section>
+
+    <!-- 2. FEATURED POST -->
+    <section class="blg-featured container">
+        <div class="imgbox">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80"
+                alt="Featured university campus story">
+            <span class="tag">Featured</span>
+        </div>
+        <div class="content">
+            <div class="meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Aug 18, 2026</span>
+                <span><i class="fa-solid fa-user"></i> Admissions Team</span>
+                <span><i class="fa-solid fa-comment"></i> 12 Comments</span>
+            </div>
+            <h2>How We're Redesigning The First Year Experience</h2>
+            <p>A behind-the-scenes look at how Stackly rebuilt orientation week, first-semester advising, and dorm
+                life around what first-year students actually told us they needed.</p>
+            <a href="404.html" class="btn-primary">Read Full Story<span
+                    class="material-symbols-outlined">arrow_right_alt</span></a>
+        </div>
+    </section>
+
+    <!-- 3. LATEST ARTICLES GRID -->
+    <section class="blg-grid-section">
+        <div class="container">
+            <div class="blg-grid-head">
+                <p class="eyebrow">Latest Articles</p>
+                <h2>Fresh From The Campus Desk</h2>
+                <p style="color:#5a5a5a; font-size:16px;">News, research highlights, and student stories from across
+                    the university.</p>
+            </div>
+
+            <div class="blg-grid">
+                <div class="blg-card">
+                    <div class="imgbox">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=700&q=80"
+                            alt="Students studying in library">
+                        <span class="tag">Academics</span>
+                    </div>
+                    <div class="blg-card-body">
+                        <div class="meta">
+                            <span><i class="fa-solid fa-calendar-days"></i> Aug 12, 2026</span>
+                            <span><i class="fa-solid fa-user"></i> Faculty News</span>
+                        </div>
+                        <h3>5 Study Habits Top Students Swear By</h3>
+                        <p>Advisors share the small, repeatable habits that make the biggest difference across
+                            exam season.</p>
+                        <a href="404.html" class="readmore">Read More</a>
+                    </div>
+                </div>
+
+                <div class="blg-card">
+                    <div class="imgbox">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80"
+                            alt="Graduation ceremony">
+                        <span class="tag">Campus Life</span>
+                    </div>
+                    <div class="blg-card-body">
+                        <div class="meta">
+                            <span><i class="fa-solid fa-calendar-days"></i> Aug 08, 2026</span>
+                            <span><i class="fa-solid fa-user"></i> Events Desk</span>
+                        </div>
+                        <h3>Inside This Year's Graduation Week</h3>
+                        <p>Highlights, photos, and the moments that stood out from convocation across all six
+                            faculties.</p>
+                        <a href="404.html" class="readmore">Read More</a>
+                    </div>
+                </div>
+
+                <div class="blg-card">
+                    <div class="imgbox">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=80"
+                            alt="Research lab work">
+                        <span class="tag">Research</span>
+                    </div>
+                    <div class="blg-card-body">
+                        <div class="meta">
+                            <span><i class="fa-solid fa-calendar-days"></i> Aug 03, 2026</span>
+                            <span><i class="fa-solid fa-user"></i> Research Office</span>
+                        </div>
+                        <h3>Student-Led Study Wins National Grant</h3>
+                        <p>A team of undergraduate researchers secured funding for their work on renewable
+                            materials.</p>
+                        <a href="404.html" class="readmore">Read More</a>
+                    </div>
+                </div>
+
+                <div class="blg-card">
+                    <div class="imgbox">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=700&q=80"
+                            alt="International students group">
+                        <span class="tag">Global</span>
+                    </div>
+                    <div class="blg-card-body">
+                        <div class="meta">
+                            <span><i class="fa-solid fa-calendar-days"></i> Jul 27, 2026</span>
+                            <span><i class="fa-solid fa-user"></i> Global Desk</span>
+                        </div>
+                        <h3>A Day In The Life Of An Exchange Student</h3>
+                        <p>Three international students walk us through classes, food, and finding community
+                            abroad.</p>
+                        <a href="404.html" class="readmore">Read More</a>
+                    </div>
+                </div>
+
+                <div class="blg-card">
+                    <div class="imgbox">
+                        <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=700&q=80"
+                            alt="Students in a career workshop">
+                        <span class="tag">Careers</span>
+                    </div>
+                    <div class="blg-card-body">
+                        <div class="meta">
+                            <span><i class="fa-solid fa-calendar-days"></i> Jul 21, 2026</span>
+                            <span><i class="fa-solid fa-user"></i> Career Services</span>
+                        </div>
+                        <h3>What Recruiters Actually Look For</h3>
+                        <p>Notes from our latest placement drive, straight from the hiring partners themselves.</p>
+                        <a href="404.html" class="readmore">Read More</a>
+                    </div>
+                </div>
+
+                <div class="blg-card">
+                    <div class="imgbox">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=700&q=80"
+                            alt="University campus grounds">
+                        <span class="tag">Campus Life</span>
+                    </div>
+                    <div class="blg-card-body">
+                        <div class="meta">
+                            <span><i class="fa-solid fa-calendar-days"></i> Jul 14, 2026</span>
+                            <span><i class="fa-solid fa-user"></i> Housing Office</span>
+                        </div>
+                        <h3>New Residence Halls Open This Fall</h3>
+                        <p>A first look inside the newly built dormitories, from room layouts to shared spaces.</p>
+                        <a href="404.html" class="readmore">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CATEGORIES -->
+    <section class="blg-categories container">
+        <div class="blg-grid-head">
+            <p class="eyebrow">Browse Topics</p>
+            <h2>Read By Category</h2>
+        </div>
+
+        <div class="blg-cat-grid">
+            <div class="blg-cat-card">
+                <i class="fa-solid fa-book-open"></i>
+                <h4>Academics</h4>
+                <p>18 Posts</p>
+            </div>
+            <div class="blg-cat-card">
+                <i class="fa-solid fa-flask"></i>
+                <h4>Research</h4>
+                <p>14 Posts</p>
+            </div>
+            <div class="blg-cat-card">
+                <i class="fa-solid fa-people-group"></i>
+                <h4>Campus Life</h4>
+                <p>22 Posts</p>
+            </div>
+            <div class="blg-cat-card">
+                <i class="fa-solid fa-briefcase"></i>
+                <h4>Careers</h4>
+                <p>9 Posts</p>
+            </div>
+            <div class="blg-cat-card">
+                <i class="fa-solid fa-earth-asia"></i>
+                <h4>Global</h4>
+                <p>11 Posts</p>
+            </div>
+            <div class="blg-cat-card">
+                <i class="fa-solid fa-trophy"></i>
+                <h4>Athletics</h4>
+                <p>7 Posts</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. NEWSLETTER -->
+    <section class="blg-newsletter">
+        <div class="container" style="display:contents;">
+            <div class="imgbox" style="padding-left:20px;">
+                <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=900&q=80"
+                    alt="Student reading on campus lawn">
+            </div>
+            <div class="content" style="padding-right:20px;">
+                <p class="eyebrow">Stay In The Loop</p>
+                <h2>Never Miss A Campus Story</h2>
+                <p>Get the best of Stackly's blog, one email a week, no spam, unsubscribe anytime.</p>
+                <div class="blg-newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button class="btn-primary">Subscribe<span
+                            class="material-symbols-outlined">arrow_right_alt</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CTA -->
+    <section class="blg-cta">
+        <div class="blg-cta-content">
+            <p class="eyebrow" style="justify-content:center; color:#ffd6da;">Have A Story?</p>
+            <h2>Write For The Stackly Blog</h2>
+            <p>Students and faculty are welcome to pitch stories, research highlights, or campus experiences worth
+                sharing.</p>
+            <a href="contact.html" class="btn-primary">Submit A Story<span
+                    class="material-symbols-outlined">arrow_right_alt</span></a>
+        </div>
+    </section>
+
+  
+ </div>
+
+   <footer class="footer">
+
+        <div class="footer1">
+            <div class="foot1">
+                <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+                <p>We are Passionate Education Dedicated to providinng high-quality Resources learners all backgrunds
+                </p>
+                <div class="footer-sotial-links">
+                    <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="foot2 foot4">
+
+                <h2>Quick Links</h2>
+                <div class="links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blogs</a>
+                    <a href="service.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+            </div>
+
+            <div class="foot2 foot4">
+
+                <h2>Our Campus</h2>
+                <div class="links">
+                    <a href="404.html">Academic</a>
+                    <a href="404.html">Athletics</a>
+                    <a href="404.html">Campus Life</a>
+                    <a href="404.html">Research</a>
+                    <a href="404.html">Acadeemic Area</a>
+                </div>
+
+            </div>
+
+            <div class="foot3 foot4">
+                <h2>Newsletter</h2>
+                <p>Stay connected with the latest news, events, and updates from our university.</p>
+
+                <div class="footerform">
+                    <input type="email" id="foot-email" placeholder="Enter email">
+                    <button id="sub-btn" class="herobtn">Subscribe</button>
+                    <p class="foot-error"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer2">
+            <p>Copy Rights @ 2026 by Stackly</p>
+            <div>
+                <a href="404.html">Terms & Conditions</a> |
+                <a href="404.html">Privacy Policy</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+

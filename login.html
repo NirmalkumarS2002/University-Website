@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly University - Login</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        :root {
+            --pcolor: #730017;
+            --dark: #080808;
+            --sub: #6b6b6b;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* ===== full page split, no floating card, no chart strip ===== */
+        .login-wrap {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* left: full bleed campus photo with quote, like the leadership section */
+        .login-visual {
+            position: relative;
+            background-image: linear-gradient(rgba(8, 8, 8, 0.55), rgba(115, 0, 23, 0.55)), url('https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        .login-visual .logoimage img {
+            width: 150px;
+        }
+
+        .visual-quote {
+            max-width: 420px;
+        }
+
+        .visual-quote span.material-symbols-outlined {
+            color: white;
+            font-size: 40px;
+            opacity: .6;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .visual-quote p {
+            font-family: "Acme", sans-serif;
+            color: white;
+            font-size: 26px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .visual-quote-foot {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .visual-quote-foot img {
+            height: 44px;
+            width: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
+        .visual-quote-foot h4 {
+            color: white;
+            font-size: 14px;
+        }
+
+        .visual-quote-foot span.role {
+            color: #f0dede;
+            font-size: 12px;
+            display: block;
+        }
+
+        /* right: plain white pane, editorial underline form, no boxed inputs */
+        .login-pane {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .login-form-wrap {
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .login-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--pcolor);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .login-eyebrow::before {
+            content: "";
+            width: 26px;
+            height: 2px;
+            background: var(--pcolor);
+        }
+
+        .login-form-wrap h1 {
+            font-family: "Acme", sans-serif;
+            font-size: 42px;
+            color: var(--dark);
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .login-form-wrap>p {
+            color: var(--sub);
+            font-size: 14.5px;
+            margin-bottom: 28px;
+        }
+
+        /* tab-style role switch, reusing the underline-on-hover language from the navbar menu */
+        .role-tabs {
+            display: flex;
+            gap: 30px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+
+        .role-tab {
+            background: none;
+            border: none;
+            padding-bottom: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--sub);
+            cursor: pointer;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: .3px;
+        }
+
+        .role-tab::before {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            height: 2px;
+            width: 0%;
+            background: var(--pcolor);
+            transition: .35s ease;
+        }
+
+        .role-tab.active {
+            color: var(--pcolor);
+        }
+
+        .role-tab.active::before {
+            width: 100%;
+        }
+
+        /* underline inputs, no boxes, no left icons */
+        .field {
+            margin-bottom: 26px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .uline {
+            position: relative;
+        }
+
+        .uline input {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #e4dede;
+            background: transparent;
+            padding: 6px 30px 10px 0;
+            font-size: 15px;
+            color: var(--dark);
+            outline: none;
+            transition: .3s ease;
+        }
+
+        .uline input:focus {
+            border-color: var(--pcolor);
+        }
+
+        .uline .passeye {
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            font-size: 19px;
+            color: #a3a3a3;
+            cursor: pointer;
+        }
+
+        .errormsg {
+            color: #c0263a;
+            margin-top: 8px;
+            font-size: 11.5px;
+        }
+
+        .field-foot {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 30px;
+            margin-top: -14px;
+        }
+
+        .forget {
+            font-size: 12.5px;
+            text-decoration: none;
+            color: var(--pcolor);
+            font-weight: bold;
+        }
+
+        .forget:hover {
+            text-decoration: underline;
+        }
+
+        /* reuse the exact herobtn signature button from the rest of the site */
+        .log-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 30px;
+            background: var(--pcolor);
+            border: none;
+            color: white;
+            border-radius: 7px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .log-btn span {
+            transform: rotate(-50deg);
+            transition: .5s ease;
+            font-size: 22px;
+        }
+
+        .log-btn::before {
+            content: "";
+            height: 100%;
+            width: 0%;
+            background: black;
+            transition: width .5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .log-btn:hover::before {
+            width: 100%;
+        }
+
+        .log-btn:hover span {
+            transform: rotate(0deg);
+        }
+
+        .divider-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 26px 0 20px;
+        }
+
+        .divider-row::before,
+        .divider-row::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: #eee;
+        }
+
+        .divider-row span {
+            font-size: 11px;
+            color: var(--sub);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            white-space: nowrap;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .social-row a {
+            flex: 1;
+            height: 46px;
+            border: 1px solid #eee;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 16px;
+            transition: .3s ease;
+        }
+
+        .social-row a:hover {
+            border-color: var(--pcolor);
+            color: var(--pcolor);
+            background: #73001708;
+        }
+
+        .login-foot {
+            text-align: center;
+        }
+
+        .login-foot p {
+            font-size: 13.5px;
+            color: var(--sub);
+            margin-bottom: 18px;
+        }
+
+        .login-foot p a {
+            color: var(--pcolor);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-foot p a:hover {
+            text-decoration: underline;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12.5px;
+            text-decoration: none;
+            color: var(--sub);
+        }
+
+        .home-btn:hover {
+            color: var(--pcolor);
+        }
+
+        .home-btn span {
+            font-size: 17px;
+        }
+
+        @media (max-width:900px) {
+            .login-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .login-visual {
+                display: none;
+            }
+
+            .login-pane {
+                padding: 40px 25px;
+            }
+        }
+
+        @media (max-width:400px) {
+            .login-form-wrap h1 {
+                font-size: 34px;
+            }
+        }
+
+        .popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 8, 8, .55);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .popup.active {
+            display: flex;
+        }
+
+        .popup-box {
+            width: 340px;
+            background: white;
+            color: var(--dark);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(8, 8, 8, 0.25);
+        }
+
+        .success {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(30, 158, 90, 0.12);
+            color: #1e9e5a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 16px;
+        }
+
+        .popup-box h2 {
+            font-family: "Acme", sans-serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .popup-box p {
+            color: var(--sub);
+            margin-bottom: 22px;
+            font-size: 13px;
+        }
+
+        .popup-box button {
+            padding: 12px 34px;
+            border: none;
+            background: var(--pcolor);
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .popup-box button:hover {
+            background: var(--dark);
+        }
+
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="popup" id="popup">
+        <div class="popup-box">
+            <span class="material-symbols-outlined success">check_circle</span>
+            <h2>Login Successful</h2>
+            <p>Welcome back. Click OK to continue.</p>
+            <button id="okBtn">OK</button>
+        </div>
+    </div>
+
+    <div class="login-wrap">
+
+        <div class="login-visual">
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="Stackly University Logo"></a>
+
+            <div class="visual-quote">
+                <span class="material-symbols-outlined">format_quote</span>
+                <p>Every student who walks through our gates carries a different story. Our role is to help them
+                    write the next chapter.</p>
+                <div class="visual-quote-foot">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=80"
+                        alt="Chancellor portrait">
+                    <div>
+                        <h4>Dr. Vikram Anand</h4>
+                        <span class="role">Chancellor, Stackly University</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-pane">
+            <div class="login-form-wrap">
+
+                <p class="login-eyebrow">Student & Staff Portal</p>
+                <h1>Welcome Back</h1>
+                <p>Log in to continue to your Stackly account.</p>
+
+                <div class="role-tabs">
+                    <button class="role-tab active" data-role="Student">Student</button>
+                    <button class="role-tab" data-role="Faculty">Faculty / Staff</button>
+                </div>
+
+                <div class="form-box field">
+                    <label>Email Address</label>
+                    <div class="uline">
+                        <input type="email" placeholder="you@stackly.edu" id="log-email">
+                    </div>
+                    <p class="errormsg"></p>
+                </div>
+
+                <div class="form-box field">
+                    <label>Password</label>
+                    <div class="uline">
+                        <input type="password" placeholder="Enter your password" id="log-pass">
+                        <span class="material-symbols-outlined passeye">visibility_off</span>
+                    </div>
+                    <p class="errormsg"></p>
+                </div>
+
+                <div class="field-foot">
+                    <a href="404.html" class="forget">Forgot Password?</a>
+                </div>
+
+                <button class="log-btn">Log In<span
+                        class="material-symbols-outlined">arrow_right_alt</span></button>
+
+                <div class="divider-row"><span>Or continue with</span></div>
+
+                <div class="social-row">
+                    <a href="404.html"><i class="fa-brands fa-google"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-microsoft"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-apple"></i></a>
+                </div>
+
+                <div class="login-foot">
+                    <p>Don't have an account? <a href="sign.html">Sign Up</a></p>
+                    <a href="index.html" class="home-btn"><span
+                            class="material-symbols-outlined">home</span>Back to Home</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const email = document.querySelector("#log-email");
+        const password = document.querySelector("#log-pass");
+        const loginBtn = document.querySelector(".log-btn");
+
+        const roleTabs = document.querySelectorAll(".role-tab");
+        const eyeIcon = document.querySelector(".passeye");
+        const errorMsgs = document.querySelectorAll(".errormsg");
+
+        const popup = document.querySelector("#popup");
+        const okBtn = document.querySelector("#okBtn");
+
+        let selectedRole = "Student";
+
+        roleTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                roleTabs.forEach((t) => { t.classList.remove("active") })
+                tab.classList.add("active")
+                selectedRole = tab.dataset.role;
+            })
+        })
+
+        eyeIcon.addEventListener("click", () => {
+            if (eyeIcon.textContent == "visibility_off") {
+                eyeIcon.textContent = "visibility"
+                password.type = "text"
+            }
+            else {
+                eyeIcon.textContent = "visibility_off"
+                password.type = "password"
+            }
+        })
+
+        loginBtn.addEventListener("click", () => {
+
+            let isvalid = true;
+            let logregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+            let fe = email.value.trim()
+            let fp = password.value.trim()
+
+            errorMsgs.forEach((error) => { error.textContent = ""; })
+
+            if (fe == "") {
+                errorMsgs[0].textContent = "Enter Your Email";
+                isvalid = false;
+            }
+            else if (!logregex.test(fe)) {
+                errorMsgs[0].textContent = "Enter Valid Email";
+                isvalid = false;
+            }
+
+            if (fp == "") {
+                errorMsgs[1].textContent = "Enter Your Password";
+                isvalid = false;
+            }
+            else if (fp.length < 6) {
+                errorMsgs[1].textContent = "Password must be at least 6 characters";
+                isvalid = false;
+            }
+
+            if (isvalid) {
+                popup.classList.add("active")
+
+                okBtn.addEventListener("click", () => {
+                    localStorage.setItem("useremail", email.value)
+
+                    if (selectedRole == "Student") {
+                        window.location.href = "student.html"
+                    }
+                    else {
+                        window.location.href = "faculty.html"
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

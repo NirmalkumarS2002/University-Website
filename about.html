@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University About - Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+<link rel="stylesheet" href="style.css">
+<style>
+        :root {
+            --pcolor: #730017;
+            --dark: #080808;
+        }
+
+      section {
+            padding: 120px;
+            box-sizing: border-box;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+          section {
+            overflow-x: hidden;
+            color: var(--dark);
+        }
+
+         .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-inline: 20px;
+        }
+
+           section .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--pcolor);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+
+          section.eyebrow::before {
+            content: "";
+            width: 30px;
+            height: 3px;
+            background: var(--pcolor);
+            display: inline-block;
+        }
+
+           section h2 {
+            font-family: "Acme", sans-serif;
+            font-size: 44px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            color: var(--dark);
+            margin-bottom: 18px;
+        }
+
+          section .btn-primary {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 32px;
+            background: var(--pcolor);
+            border: none;
+            color: white;
+            border-radius: 7px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+          section .btn-primary span {
+            transform: rotate(-50deg);
+            transition: .5s ease;
+            font-size: 20px;
+        }
+
+          section .btn-primary::before {
+            content: "";
+            height: 100%;
+            width: 0%;
+            background: black;
+            transition: width .5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+         section .btn-primary:hover::before {
+            width: 100%;
+        }
+
+          section .btn-primary:hover span {
+            transform: rotate(0deg);
+        }
+
+        /* ---------- 1. PAGE BANNER ---------- */
+        .abt-banner {
+            position: relative;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url("https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+        }
+
+        .abt-banner::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(8, 8, 8, 0.65);
+        }
+
+        .abt-banner-content {
+            position: relative;
+            z-index: 2;
+            padding-top: 90px;
+        }
+
+        .abt-banner-content .eyebrow {
+            justify-content: center;
+            color: #ffb3bd;
+        }
+
+        .abt-banner-content .eyebrow::before {
+            background: #ffb3bd;
+        }
+
+        .abt-banner-content h1 {
+            font-family: "Acme", sans-serif;
+            font-size: 66px;
+            text-transform: uppercase;
+            color: white;
+            line-height: 1;
+            margin-bottom: 18px;
+        }
+
+        .abt-banner-content .crumb {
+            color: #e7e7e7;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .abt-banner-content .crumb span {
+            color: var(--pcolor);
+            background: white;
+            padding: 0 8px;
+            border-radius: 3px;
+            margin: 0 6px;
+        }
+
+        /* ---------- 2. OUR STORY ---------- */
+        .abt-story {
+            padding: 100px 0;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .abt-story .imgbox {
+            position: relative;
+        }
+
+        .abt-story .imgbox img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .abt-story .imgbox .img2 {
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 60%;
+            border: 6px solid white;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .abt-story .imgbox .badge {
+            position: absolute;
+            top: -25px;
+            left: -25px;
+            background: var(--pcolor);
+            color: white;
+            padding: 20px 24px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 1.2;
+            z-index: 2;
+        }
+
+        .abt-story .imgbox .badge strong {
+            display: block;
+            font-family: "Acme", sans-serif;
+            font-size: 30px;
+        }
+
+        .abt-story .imgbox .badge span {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .abt-story .content {
+            padding-left: 30px;
+        }
+
+        .abt-story .content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #4a4a4a;
+            margin-bottom: 16px;
+        }
+
+        /* ---------- 3. MISSION & VISION ---------- */
+        .abt-mv-section {
+            padding: 100px 0;
+            background: #f8f4f4;
+        }
+
+        .abt-mv-head {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .abt-mv-head .eyebrow {
+            justify-content: center;
+        }
+
+        .abt-mv-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .abt-mv-card {
+            background: white;
+            padding: 44px 32px;
+            border-radius: 10px;
+            text-align: left;
+            border: 1px solid #eee;
+            transition: .4s ease;
+        }
+
+        .abt-mv-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--pcolor);
+            box-shadow: 0 20px 40px rgba(115, 0, 23, 0.12);
+        }
+
+        .abt-mv-card .icon {
+            height: 64px;
+            width: 64px;
+            border-radius: 50%;
+            background: var(--pcolor);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 24px;
+            transition: .4s ease;
+        }
+
+        .abt-mv-card:hover .icon {
+            background: var(--dark);
+        }
+
+        .abt-mv-card h3 {
+            font-family: "Acme", sans-serif;
+            font-size: 22px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .abt-mv-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #5a5a5a;
+        }
+
+        /* ---------- 4. STATS / ACHIEVEMENTS ---------- */
+        .abt-stats {
+            position: relative;
+            padding: 110px 0;
+            text-align: center;
+            background: url("https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat fixed;
+        }
+
+        .abt-stats::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(8, 8, 8, 0.78);
+        }
+
+        .abt-stats-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .abt-stats-content .eyebrow {
+            justify-content: center;
+            color: #ffb3bd;
+        }
+
+        .abt-stats-content .eyebrow::before {
+            background: #ffb3bd;
+        }
+
+        .abt-stats-content h2 {
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        .abt-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .abt-stats-grid .stat strong {
+            display: block;
+            font-family: "Acme", sans-serif;
+            font-size: 54px;
+            color: white;
+        }
+
+        .abt-stats-grid .stat span {
+            font-size: 14px;
+            color: #d9d9d9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ---------- 5. LEADERSHIP TEAM ---------- */
+        .abt-team {
+            padding: 100px 0;
+        }
+
+        .abt-team-head {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .abt-team-head .eyebrow {
+            justify-content: center;
+        }
+
+        .abt-team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 26px;
+        }
+
+        .abt-team-card {
+            text-align: center;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: .4s ease;
+        }
+
+        .abt-team-card:hover {
+            box-shadow: 0 20px 40px rgba(115, 0, 23, 0.12);
+            border-color: var(--pcolor);
+            transform: translateY(-6px);
+        }
+
+        .abt-team-card .imgbox {
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .abt-team-card .imgbox img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s ease;
+        }
+
+        .abt-team-card:hover .imgbox img {
+            transform: scale(1.08);
+        }
+
+        .abt-team-card .info {
+            padding: 22px 16px 26px;
+        }
+
+        .abt-team-card h4 {
+            font-size: 17px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            color: var(--dark);
+        }
+
+        .abt-team-card p {
+            font-size: 13.5px;
+            color: var(--pcolor);
+            font-weight: 700;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .abt-team-card .socials {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .abt-team-card .socials a {
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 13px;
+            transition: .3s ease;
+        }
+
+        .abt-team-card .socials a:hover {
+            background: var(--pcolor);
+            border-color: var(--pcolor);
+            color: white;
+        }
+
+        /* ---------- 6. CTA ---------- */
+        .abt-cta {
+            padding: 90px 20px;
+            background: var(--pcolor);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .abt-cta .content h2 {
+            color: white;
+            margin-bottom: 12px;
+            font-size: 36px;
+        }
+
+        .abt-cta .content p {
+            color: #f1d9dc;
+            font-size: 16px;
+        }
+
+        .abt-cta .btn-primary {
+            background: white;
+            color: var(--pcolor);
+            flex-shrink: 0;
+        }
+
+        .abt-cta .btn-primary::before {
+            background: var(--dark);
+        }
+
+        .abt-cta .btn-primary:hover {
+            color: white;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width:1100px) {
+            .abt-team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .abt-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 40px;
+            }
+        }
+
+        @media (max-width:1000px) {
+            .abt-story {
+                grid-template-columns: 1fr;
+            }
+
+            .abt-story .content {
+                padding-left: 0;
+                margin-top: 50px;
+            }
+
+            .abt-mv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .abt-banner-content h1 {
+                font-size: 50px;
+            }
+        }
+
+        @media (max-width:650px) {
+            .abt-team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .abt-cta {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .abt-cta .btn-primary {
+                margin: 0 auto;
+            }
+
+            .abt-banner-content h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 30px !important;
+            }
+
+            .abt-story .imgbox .img2 {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+         <header class="header">
+
+        <div class="navbar">
+
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+
+            <ul class="menus">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+
+            <div class="navicons">
+                <div>
+                    <span class="material-symbols-outlined errorpage">call</span>
+                    <span class="material-symbols-outlined logicon">person</span>
+                    <span class="material-symbols-outlined menubtn">menu</span>
+
+                </div>
+                <a href="login.html" class="loginbtn">Login<span class="material-symbols-outlined">login</span></a>
+            </div>
+
+        </div>
+        <div class="sidebar">
+            <span class="material-symbols-outlined closebtn">close</span>
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+
+            <ul class="sidemenus">
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <p>Create engaging and accessible learning environments with a smart university theme built for modern
+                academic institutions.</p>
+            <div class="sideimgwrap">
+                <img src="./src/sideimg.webp" alt="side image">
+                <button class="sidebtn errorpage">Apply Now<span class="material-symbols-outlined">arrow_right_alt</span></button>
+            </div>
+
+            <div class="sidebar-details">
+                <a href="404.html"><span class="material-symbols-outlined">call</span>+91 12345 67890</a>
+                <a href="404.html"><span class="material-symbols-outlined">location_on</span> Yarra Park, Melbourne,
+                    Austraila</a>
+                <div class="sideicons">
+                    <p>follow Us:</p>
+
+                    <div class="footer-sotial-links">
+                        <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+        <!-- 1. PAGE BANNER -->
+        <section class="abt-banner">
+            <div class="abt-banner-content">
+                <p class="eyebrow">Get To Know Us</p>
+                <h1>About Us</h1>
+                <p class="crumb">Home <span>/</span> About</p>
+            </div>
+        </section>
+
+        <!-- 2. OUR STORY -->
+        <section class="abt-story container">
+            <div class="imgbox">
+                <div class="badge">
+                    <strong>25+</strong>
+                    <span>Years Strong</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80"
+                    alt="Historic university building">
+                <img class="img2"
+                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+                    alt="Students walking on campus">
+            </div>
+            <div class="content">
+                <p class="eyebrow">Our Story</p>
+                <h2>Founded On A Simple Idea</h2>
+                <p>University of Stackly began with one belief, that quality education should be shaped around real
+                    students, not the other way around. What started as a single faculty building in Melbourne has grown
+                    into a full campus serving thousands of learners from over 60 countries.</p>
+                <p>Today, we combine research-driven teaching with hands-on industry exposure, so every graduate leaves
+                    with both knowledge and the confidence to use it.</p>
+                <a href="contact.html" class="btn-primary">Get In Touch<span
+                        class="material-symbols-outlined">arrow_right_alt</span></a>
+            </div>
+        </section>
+
+        <!-- 3. MISSION & VISION -->
+        <section class="abt-mv-section">
+            <div class="container">
+                <div class="abt-mv-head">
+                    <p class="eyebrow">What Drives Us</p>
+                    <h2>Our Mission, Vision & Values</h2>
+                </div>
+
+                <div class="abt-mv-grid">
+                    <div class="abt-mv-card">
+                        <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3>Our Mission</h3>
+                        <p>To deliver accessible, high-quality education that equips students with practical skills and
+                            critical thinking for a changing world.</p>
+                    </div>
+
+                    <div class="abt-mv-card">
+                        <div class="icon"><i class="fa-solid fa-eye"></i></div>
+                        <h3>Our Vision</h3>
+                        <p>To be recognised as a leading global university known for innovation, research impact, and
+                            graduate success.</p>
+                    </div>
+
+                    <div class="abt-mv-card">
+                        <div class="icon"><i class="fa-solid fa-handshake"></i></div>
+                        <h3>Our Values</h3>
+                        <p>Integrity, inclusivity, and curiosity guide every decision, from the classroom to the campus
+                            community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. STATS -->
+        <section class="abt-stats">
+            <div class="abt-stats-content container">
+                <p class="eyebrow">By The Numbers</p>
+                <h2>Achievements That Speak For Themselves</h2>
+
+                <div class="abt-stats-grid">
+                    <div class="stat">
+                        <strong>12,000+</strong>
+                        <span>Students Enrolled</span>
+                    </div>
+                    <div class="stat">
+                        <strong>450+</strong>
+                        <span>Faculty Members</span>
+                    </div>
+                    <div class="stat">
+                        <strong>60+</strong>
+                        <span>Countries Represented</span>
+                    </div>
+                    <div class="stat">
+                        <strong>98%</strong>
+                        <span>Graduate Employment</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. LEADERSHIP TEAM -->
+        <section class="abt-team">
+            <div class="container">
+                <div class="abt-team-head">
+                    <p class="eyebrow">Meet The Team</p>
+                    <h2>Leadership Behind Stackly</h2>
+                </div>
+
+                <div class="abt-team-grid">
+                    <div class="abt-team-card">
+                        <div class="imgbox">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=500&q=80"
+                                alt="University Vice Chancellor portrait">
+                        </div>
+                        <div class="info">
+                            <h4>Dr. Amara Feld</h4>
+                            <p>Vice Chancellor</p>
+                            <div class="socials">
+                                <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="abt-team-card">
+                        <div class="imgbox">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80"
+                                alt="Dean of Academics portrait">
+                        </div>
+                        <div class="info">
+                            <h4>Prof. Daniel Cho</h4>
+                            <p>Dean Of Academics</p>
+                            <div class="socials">
+                                <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="abt-team-card">
+                        <div class="imgbox">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=500&q=80"
+                                alt="Head of Research portrait">
+                        </div>
+                        <div class="info">
+                            <h4>Dr. Priya Nair</h4>
+                            <p>Head Of Research</p>
+                            <div class="socials">
+                                <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="abt-team-card">
+                        <div class="imgbox">
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=500&q=80"
+                                alt="Director of Student Affairs portrait">
+                        </div>
+                        <div class="info">
+                            <h4>Mark Whitfield</h4>
+                            <p>Student Affairs Director</p>
+                            <div class="socials">
+                                <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CTA -->
+        <section class="abt-cta">
+            <div class="content">
+                <h2>Want To Know More About Us?</h2>
+                <p>Schedule a campus tour or speak directly with our admissions counsellors.</p>
+            </div>
+            <a href="contact.html" class="btn-primary">Contact Us<span
+                    class="material-symbols-outlined">arrow_right_alt</span></a>
+        </section>
+
+            <footer class="footer">
+
+        <div class="footer1">
+            <div class="foot1">
+                <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+                <p>We are Passionate Education Dedicated to providinng high-quality Resources learners all backgrunds
+                </p>
+                <div class="footer-sotial-links">
+                    <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="foot2 foot4">
+
+                <h2>Quick Links</h2>
+                <div class="links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blogs</a>
+                    <a href="service.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+            </div>
+
+            <div class="foot2 foot4">
+
+                <h2>Our Campus</h2>
+                <div class="links">
+                    <a href="404.html">Academic</a>
+                    <a href="404.html">Athletics</a>
+                    <a href="404.html">Campus Life</a>
+                    <a href="404.html">Research</a>
+                    <a href="404.html">Acadeemic Area</a>
+                </div>
+
+            </div>
+
+            <div class="foot3 foot4">
+                <h2>Newsletter</h2>
+                <p>Stay connected with the latest news, events, and updates from our university.</p>
+
+                <div class="footerform">
+                    <input type="email" id="foot-email" placeholder="Enter email">
+                    <button id="sub-btn" class="herobtn">Subscribe</button>
+                    <p class="foot-error"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer2">
+            <p>Copy Rights @ 2026 by Stackly</p>
+            <div>
+                <a href="404.html">Terms & Conditions</a> |
+                <a href="404.html">Privacy Policy</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

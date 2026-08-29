@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <title>University Home - Page</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        :root {
+            --pcolor: #730017;
+            --dark: #080808;
+        }
+
+        .navbar {
+            position: absolute;
+            width: 100%;
+            z-index: 9999;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 50px;
+            padding: 10px 20px;
+            align-items: center;
+        }
+
+        .navbar.active {
+            position: fixed;
+            background: black;
+        }
+
+
+
+        .logoimage {
+            display: flex;
+            align-items: center;
+        }
+
+        .logoimage img {
+            width: 160px;
+        }
+
+        .menus {
+            display: flex;
+            gap: 20px;
+            justify-content: space-around;
+        }
+
+        .menus li {
+            list-style: none;
+        }
+
+        .menus li a {
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .menus li a::before {
+            content: "";
+            height: 2px;
+            width: 0%;
+            position: absolute;
+            background: white;
+            left: 0;
+            bottom: -2px;
+            transition: .5s ease;
+        }
+
+        .menus li a:hover::before {
+            width: 100%;
+        }
+
+        .menus li a.active::before {
+            width: 100%;
+        }
+
+
+
+        .navicons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navicons div {
+            display: flex;
+        }
+
+        .navicons div span {
+            padding-inline: 15px;
+            font-size: 23px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .navicons div span:hover {
+            color: var(--pcolor);
+        }
+
+        .menubtn {
+            border-left: 1px solid white;
+        }
+
+        .logicon {
+            border-left: 1px solid white;
+        }
+
+        .loginbtn {
+            padding: 15px 40px;
+            background: var(--pcolor);
+            color: white;
+            text-decoration: none;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            border-radius: 40px;
+            transition: .5s ease;
+        }
+
+        .loginbtn:hover {
+            background: #a70223;
+            box-shadow: 10px 5px 35px 2px #a7022385;
+        }
+
+        .loginbtn:hover span {
+            transform: translateX(5px);
+        }
+
+        .loginbtn span {
+            font-size: 20px;
+            transition: .5s ease;
+        }
+
+        .logicon {
+            display: none;
+        }
+
+        /* sidebar */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 320px;
+            height: 100vh;
+            background: var(--dark);
+            padding: 60px 20px;
+            box-sizing: border-box;
+            z-index: 99999;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: .5s ease;
+        }
+
+        .sidebar.active {
+            transform: translateX(0%);
+        }
+
+        .closebtn {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            padding: 10px;
+            font-size: 22px;
+            background: var(--pcolor);
+            color: white;
+            cursor: pointer;
+        }
+
+        .sidebar .logoimage img {
+            margin: 10px auto;
+        }
+
+        .sidebar>p {
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .sideimgwrap {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .sideimgwrap img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .sidebtn {
+            position: absolute;
+            left: 50%;
+            bottom: 50px;
+            transform: translateX(-50%);
+            background: var(--pcolor);
+            color: white;
+            padding: 13px 50px;
+            border: none;
+            font-size: 14px;
+            border-radius: 40px;
+            text-wrap: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden;
+        }
+
+        .sidebtn span {
+            transform: rotate(-50deg);
+            transition: .5s ease;
+            font-size: 22px;
+        }
+
+        .sidebtn::before {
+            content: "";
+            height: 100%;
+            width: 0%;
+            background: black;
+            transition: width .5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .sidebtn:hover::before {
+            width: 100%;
+        }
+
+        .sidebtn:hover span {
+            transform: rotate(0deg);
+        }
+
+
+
+        .sidebar-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar-details>a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            color: white;
+        }
+
+        .sidebar-details>a:hover {
+            color: var(--pcolor);
+        }
+
+        .sidebar-details>a span {
+            font-size: 18px;
+        }
+
+        .sideicons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sideicons p {
+            font-size: 16px;
+            color: white;
+        }
+
+        .sidebar .footer-sotial-links {
+            display: flex;
+            gap: 5px;
+        }
+
+        .sidebar .footer-sotial-links a {
+            color: white;
+        }
+
+        .sidebar .footer-sotial-links a:hover {
+            color: var(--pcolor);
+        }
+
+        .sidemenus {
+            display: none;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .sidemenus li {
+            list-style: none;
+            padding: 10px 10px;
+            border-bottom: 1px solid #7300179c;
+        }
+
+        .sidemenus li a {
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+        }
+
+        .sidemenus li:hover {
+            background: var(--pcolor);
+            border-left: 5px solid white;
+        }
+
+        .sidemenus li.active {
+            background: var(--pcolor);
+            border-left: 5px solid white;
+        }
+
+
+        @media (max-width:1000px) {
+
+            .navbar {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .loginbtn {
+                display: none;
+            }
+
+            .logicon {
+                display: block;
+            }
+
+            .menus {
+                display: none;
+            }
+
+
+            .sidemenus {
+                display: flex;
+            }
+        }
+
+        @media (max-width:600px) {
+            .logoimage img {
+                width: 130px;
+            }
+
+            .navbar {
+                padding: 10px;
+            }
+
+            .navicons div span {
+                padding-inline: 10px;
+                font-size: 20px;
+            }
+
+        }
+
+        /* footer */
+
+        .footer {
+            display: flex;
+            flex-direction: column;
+            background: var(--dark);
+            color: white;
+            padding: 10px 20px;
+
+        }
+
+        .footer1 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-block: 30px;
+        }
+
+        .foot1 .logoimage {
+            margin-bottom: 20px;
+        }
+
+        .foot1 p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-sotial-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer .footer-sotial-links a {
+            font-size: 16px;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            border: 1px solid white;
+            transition: .2s ease;
+        }
+
+        .footer .footer-sotial-links a:hover {
+            background: var(--pcolor);
+            border: none;
+        }
+
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .links a:hover {
+            color: var(--pcolor);
+        }
+
+        .foot4 h2 {
+            margin-bottom: 30px;
+            font-size: 25px;
+            position: relative;
+        }
+
+        .foot4 h2::before {
+            content: "";
+            background: linear-gradient(125deg, transparent, rgb(138, 6, 6), transparent);
+            height: 2px;
+            width: 20%;
+            position: absolute;
+            bottom: -2px;
+            left: 30px;
+            ;
+
+        }
+
+
+        .foot3 p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .footerform {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footerform input,
+        .footerform button {
+            padding: 14px 20px;
+            border-radius: 40px;
+            border: none;
+        }
+
+        .footerform button {
+            width: 100% !important;
+            text-align: center;
+            border: 1px solid var(--pcolor);
+        }
+
+        #foot-email {
+            background: transparent;
+            border: 1px solid var(--pcolor);
+            color: white;
+        }
+
+        #foot-email:focus {
+            outline: none;
+        }
+
+        #sub-btn {
+            background: var(--pcolor);
+            color: white;
+        }
+
+        .footer2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            padding-block: 30px;
+            margin: 0 auto;
+            width: 100%;
+            border-top: 1px solid gray;
+        }
+
+        .footer2 p {
+            font-size: 15px;
+        }
+
+        .footer2 div {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer2 div a {
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+        }
+
+        .footer2 div a:hover {
+            color: var(--pcolor);
+        }
+
+
+
+        @media (max-width:950px) {
+            .footer1 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width:560px) {
+            .footer1 {
+                grid-template-columns: 1fr;
+            }
+
+            .footer2 {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /*hero section*/
+
+        .herosection {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding-top: 100px;
+        }
+
+
+        .hero-content p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+
+        .hero-content h1 {
+            font-size: 140px;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 16px;
+            font-family: "Acme", sans-serif;
+            line-height: 0.9;
+
+        }
+
+        .hero-content .herohead2 {
+            margin-left: 240px;
+            margin-bottom: 30px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .herobtn {
+            width: fit-content;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--pcolor);
+            border: none;
+            color: white;
+            border-radius: 7px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 15px;
+        }
+
+        .herobtn span {
+            transform: rotate(-50deg);
+            transition: .5s ease;
+            font-size: 22px;
+        }
+
+        .herobtn::before {
+            content: "";
+            height: 100%;
+            width: 0%;
+            background: black;
+            transition: width .5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .herobtn:hover::before {
+            width: 100%;
+        }
+
+        .herobtn:hover span {
+            transform: rotate(0deg);
+        }
+
+
+        @media (max-width:1100px) {
+            .hero-content h1 {
+                font-size: 100px;
+            }
+
+            .hero-content .herohead2 {
+                margin-left: 200px;
+            }
+        }
+
+        @media (max-width:800px) {
+            .hero-content h1 {
+                font-size: 70px;
+            }
+
+            .hero-content .herohead2 {
+                margin-left: 160px;
+            }
+        }
+
+        @media (max-width:550px) {
+            .hero-content h1 {
+                font-size: 45px;
+            }
+
+            .hero-content p {
+                font-size: 14px;
+            }
+
+            .hero-content p span {
+                font-size: 20px;
+            }
+
+            .hero-content .herohead2 {
+                margin-left: 80px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="navbar">
+
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+
+            <ul class="menus">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+
+            <div class="navicons">
+                <div>
+                    <span class="material-symbols-outlined errorpage">call</span>
+                    <span class="material-symbols-outlined logicon">person</span>
+                    <span class="material-symbols-outlined menubtn">menu</span>
+
+                </div>
+                <a href="login.html" class="loginbtn">Login<span class="material-symbols-outlined">login</span></a>
+            </div>
+
+        </div>
+        <div class="sidebar">
+            <span class="material-symbols-outlined closebtn">close</span>
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+
+            <ul class="sidemenus">
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <p>Create engaging and accessible learning environments with a smart university theme built for modern
+                academic institutions.</p>
+            <div class="sideimgwrap">
+                <img src="./src/sideimg.webp" alt="side image">
+                <button class="sidebtn errorpage">Apply Now<span
+                        class="material-symbols-outlined">arrow_right_alt</span></button>
+            </div>
+
+            <div class="sidebar-details">
+                <a href="404.html"><span class="material-symbols-outlined">call</span>+91 12345 67890</a>
+                <a href="404.html"><span class="material-symbols-outlined">location_on</span> Yarra Park, Melbourne,
+                    Austraila</a>
+                <div class="sideicons">
+                    <p>follow Us:</p>
+
+                    <div class="footer-sotial-links">
+                        <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+    <section class="herosection">
+
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="./src/herovideo.webm" type="video/webm">
+        </video>
+
+        <div class="overlay"></div>
+
+
+        <div class="hero-content">
+            <p><span class="material-symbols-outlined">school</span>Knowledge Meets Innovation</p>
+
+            <div class="title-div">
+                <h1 class="herohead1">University</h1>
+                <h1 class="herohead2">of Stackly</h1>
+            </div>
+
+            <button class="herobtn errorpage">View Our Programs<span
+                    class="material-symbols-outlined">arrow_right_alt</span>
+            </button>
+        </div>
+
+    </section>
+
+    <footer class="footer">
+
+        <div class="footer1">
+            <div class="foot1">
+                <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+                <p>We are Passionate Education Dedicated to providinng high-quality Resources learners all backgrunds
+                </p>
+                <div class="footer-sotial-links">
+                    <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="foot2 foot4">
+
+                <h2>Quick Links</h2>
+                <div class="links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blogs</a>
+                    <a href="service.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+            </div>
+
+            <div class="foot2 foot4">
+
+                <h2>Our Campus</h2>
+                <div class="links">
+                    <a href="404.html">Academic</a>
+                    <a href="404.html">Athletics</a>
+                    <a href="404.html">Campus Life</a>
+                    <a href="404.html">Research</a>
+                    <a href="404.html">Acadeemic Area</a>
+                </div>
+
+            </div>
+
+            <div class="foot3 foot4">
+                <h2>Newsletter</h2>
+                <p>Stay connected with the latest news, events, and updates from our university.</p>
+
+                <div class="footerform">
+                    <input type="email" id="foot-email" placeholder="Enter email">
+                    <button id="sub-btn" class="herobtn">Subscribe</button>
+                    <p class="foot-error"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer2">
+            <p>Copy Rights @ 2026 by Stackly</p>
+            <div>
+                <a href="404.html">Terms & Conditions</a> |
+                <a href="404.html">Privacy Policy</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        // navbar
+        let sidebar = document.querySelector(".sidebar")
+        let menubtn = document.querySelector(".menubtn")
+        let closebtn = document.querySelector(".closebtn")
+
+
+        menubtn.addEventListener("click", () => {
+            sidebar.classList.add("active")
+        })
+
+        closebtn.addEventListener("click", () => {
+            sidebar.classList.remove("active")
+        })
+
+        // navbar scroller
+
+        let navbar = document.querySelector(".navbar")
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 400) {
+                navbar.classList.add("active")
+            }
+
+            else {
+                navbar.classList.remove("active")
+            }
+
+        })
+
+        // errorpage
+
+        let errorpage = document.querySelectorAll(".errorpage")
+        errorpage.forEach((err) => {
+            err.addEventListener("click", () => {
+                window.location.href = "404.html"
+            })
+        })
+    </script>
+</body>
+
+</html>

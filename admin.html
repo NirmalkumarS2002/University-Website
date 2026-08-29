@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly University - Admin Dashboard</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pcolor: #730017;
+            --hcolor: #a3324a;
+            --dark: #080808;
+            --ink: #1a1a1a;
+            --sub: #6b6b6b;
+            --line: #E9E2E2;
+            --bg: #FAF7F5;
+            --card: #FFFFFF;
+            --good: #1e9e5a;
+            --warn: #c78a1c;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Nunito Sans', sans-serif;
+            display: flex;
+            overflow-x: hidden;
+            min-height: 100vh;
+            color: var(--ink);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* ================= SIDEBAR (restructured: icon rail + collapsible labels) ================= */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            background: var(--dark);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            transition: width .3s ease;
+            border-right: 1px solid #1c1214;
+        }
+
+        .sidebar.collapsed {
+            width: 78px;
+        }
+
+        .sidebar.collapsed .nav-group-label,
+        .sidebar.collapsed .side-nav button span.label,
+        .sidebar.collapsed .sidebar-footer .who,
+        .sidebar.collapsed .sidebar-logo a img {
+            display: none;
+        }
+
+        .sidebar.collapsed .sidebar-footer {
+            justify-content: center;
+        }
+
+        .sidebar.collapsed .side-nav button {
+            justify-content: center;
+        }
+
+        .sidebar-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 16px;
+            border-bottom: 1px solid #241417;
+        }
+
+        .sidebar-logo a {
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-logo a img {
+            width: clamp(140px, 15vw, 170px);
+        }
+
+        .rail-toggle {
+            background: #1c1214;
+            border: none;
+            color: #b8a7a9;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .rail-toggle:hover {
+            color: #fff;
+        }
+
+        .sidebar-logo .adminclose {
+            color: white;
+            display: none;
+        }
+
+        .sidebar-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 14px;
+        }
+
+        .nav-group-label {
+            font-size: 10.5px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #7a6265;
+            padding: 0 10px;
+            margin: 18px 0 10px;
+            font-weight: 800;
+        }
+
+        .nav-group-label:first-child {
+            margin-top: 0;
+        }
+
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .side-nav button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #b8a7a9;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .2px;
+            border-radius: 9px;
+            cursor: pointer;
+            text-align: left;
+            transition: .3s ease;
+            position: relative;
+        }
+
+        .side-nav button .material-symbols-outlined {
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        /*
+        .side-nav button .pill {
+            margin-left: auto;
+            background: var(--pcolor);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 20px;
+        }*/
+
+        .side-nav button:hover {
+            background: #1c1214;
+            color: #fff;
+        }
+
+        .side-nav button.active {
+            background: var(--pcolor);
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-top: 1px solid #241417;
+        }
+
+        .sidebar-footer img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer h4 {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .sidebar-footer span {
+            color: #9a8688;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ================= MAIN AREA ================= */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        /* --- Topbar restructured: breadcrumb row + utility row stacked --- */
+        .topbar {
+            background: var(--card);
+            border-bottom: 1px solid var(--line);
+            padding: 14px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .topbar-row1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--sub);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .breadcrumb .current {
+            color: var(--pcolor);
+        }
+
+        .topbarimgcontainer {
+            display: none;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .topbarimgcontainer .topbarmenu {
+            font-size: 22px;
+            display: none;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        .topbarimgcontainer .tlogo {
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tlogo a {
+            display: flex;
+            align-items: center;
+        }
+
+        .tlogo a img {
+            width: 120px;
+        }
+
+        .topbar-date {
+            font-size: 12px;
+            color: var(--sub);
+            font-weight: 700;
+        }
+
+        .topbar-row2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .topbar h2 {
+            font-family: 'Acme', sans-serif;
+            font-weight: 400;
+            font-size: 24px;
+            color: var(--ink);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 9px 15px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 13px;
+            width: 190px;
+            color: var(--ink);
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        .search-box input::placeholder {
+            color: #98A2B3;
+        }
+
+        .search-box>.material-symbols-outlined {
+            color: var(--sub);
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .icon-btn {
+            position: relative;
+            color: var(--sub);
+            cursor: pointer;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn .dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--pcolor);
+        }
+
+        .topbar-avatar img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--pcolor);
+        }
+
+        .content-scroll {
+            padding: 22px 28px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .view {
+            display: none;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .view.active {
+            display: flex;
+        }
+
+        .d-btn {
+            padding: 10px 20px;
+            background: var(--pcolor);
+            border: 1px solid var(--pcolor);
+            color: white;
+            cursor: pointer;
+            transition: .3s ease;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .2px;
+            font-family: 'Nunito Sans', sans-serif;
+            border-radius: 10px;
+            text-wrap: nowrap;
+        }
+
+        .d-btn:hover {
+            background: var(--dark);
+            border-color: var(--dark);
+        }
+
+        .d-btn.ghost {
+            background: transparent;
+            color: var(--pcolor);
+        }
+
+        .d-btn.ghost:hover {
+            background: var(--pcolor);
+            color: #fff;
+        }
+
+        /* generic panel */
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px;
+            overflow-x: auto;
+            box-shadow: 0 4px 18px rgba(8, 8, 8, 0.04);
+        }
+
+        .panel h3 {
+            font-family: 'Acme', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .panel-head h3 {
+            margin-bottom: 0;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chips button {
+            padding: 7px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--line);
+            background: var(--bg);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--sub);
+            cursor: pointer;
+            font-family: 'Nunito Sans', sans-serif;
+            transition: .2s ease;
+        }
+
+        .filter-chips button.active,
+        .filter-chips button:hover {
+            background: var(--pcolor);
+            border-color: var(--pcolor);
+            color: #fff;
+        }
+
+        /* ---------- BENTO GRID (new overview structure) ---------- */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .bento .span-8 {
+            grid-column: span 8;
+        }
+
+        .bento .span-4 {
+            grid-column: span 4;
+        }
+
+        .bento .span-6 {
+            grid-column: span 6;
+        }
+
+        .bento .span-12 {
+            grid-column: span 12;
+        }
+
+        /* stat cards - redesigned horizontal style with sparkbar */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: .3s ease;
+            box-shadow: 0 4px 18px rgba(8, 8, 8, 0.04);
+        }
+
+        .stat-card:hover {
+            border-color: var(--pcolor);
+            transform: translateY(-2px);
+        }
+
+        .stat-card .material-symbols-outlined {
+            background: rgba(115, 0, 23, 0.08);
+            color: var(--pcolor);
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            flex-shrink: 0;
+        }
+
+        .stat-card .stat-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .stat-card h2 {
+            font-family: 'Acme', sans-serif;
+            font-weight: 400;
+            font-size: 24px;
+            color: var(--ink);
+            line-height: 1;
+        }
+
+        .stat-card p {
+            font-size: 11.5px;
+            color: var(--sub);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-weight: 700;
+        }
+
+        .stat-card .delta {
+            font-size: 11px;
+            color: var(--good);
+            font-weight: 700;
+        }
+
+        .stat-card .delta.down {
+            color: #c0263a;
+        }
+
+        /* bar chart (css only, no libs) */
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 14px;
+            height: 180px;
+            padding-top: 10px;
+        }
+
+        .bar-chart .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar-chart .bar {
+            width: 60%;
+            background: linear-gradient(180deg, var(--hcolor), var(--pcolor));
+            border-radius: 6px 6px 0 0;
+            min-height: 6px;
+        }
+
+        .bar-chart .bar-col span {
+            font-size: 10.5px;
+            color: var(--sub);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* donut chart css */
+        .donut-wrap {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .donut {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: conic-gradient(var(--pcolor) 0% 42%, var(--hcolor) 42% 65%, #e2b8c0 65% 84%, var(--line) 84% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donut::after {
+            content: "";
+            width: 88px;
+            height: 88px;
+            background: var(--card);
+            border-radius: 50%;
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .donut-legend .leg-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .donut-legend .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+
+        /* timeline / activity feed */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .timeline .t-item {
+            display: flex;
+            gap: 14px;
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline .t-item:not(:last-child)::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 32px;
+            bottom: 0;
+            width: 1px;
+            background: var(--line);
+        }
+
+        .timeline .t-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(115, 0, 23, 0.08);
+            color: var(--pcolor);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .timeline .t-body h5 {
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+        .timeline .t-body p {
+            font-size: 12px;
+            color: var(--sub);
+        }
+
+        /* calendar / events widget */
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .event-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px;
+            border-radius: 10px;
+            transition: .2s ease;
+        }
+
+        .event-item:hover {
+            background: var(--bg);
+        }
+
+        .event-date {
+            background: var(--dark);
+            color: #fff;
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .event-date strong {
+            font-size: 15px;
+            font-family: 'Acme', sans-serif;
+            line-height: 1;
+        }
+
+        .event-date span {
+            font-size: 9px;
+            text-transform: uppercase;
+        }
+
+        .event-info h5 {
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .event-info p {
+            font-size: 11.5px;
+            color: var(--sub);
+        }
+
+        /* quick actions grid */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .quick-actions button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 8px;
+            border-radius: 12px;
+            border: 1px dashed var(--line);
+            background: var(--bg);
+            cursor: pointer;
+            font-family: 'Nunito Sans', sans-serif;
+            transition: .2s ease;
+        }
+
+        .quick-actions button:hover {
+            border-color: var(--pcolor);
+            background: rgba(115, 0, 23, 0.05);
+        }
+
+        .quick-actions .material-symbols-outlined {
+            color: var(--pcolor);
+            font-size: 20px;
+        }
+
+        .quick-actions span {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--ink);
+            text-align: center;
+        }
+
+        /* table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            text-align: left;
+            font-size: 11px;
+            color: var(--sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--line);
+            font-weight: 800;
+        }
+
+        tbody td {
+            padding: 13px 12px;
+            font-size: 13px;
+            color: var(--ink);
+            border-bottom: 1px solid #F3EDED;
+            text-wrap: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr {
+            transition: .2s ease;
+        }
+
+        tbody tr:hover {
+            background: var(--bg);
+        }
+
+        .cell-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .cell-item img {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .badge.delivered {
+            background: rgba(30, 158, 90, 0.12);
+            color: var(--good);
+        }
+
+        .badge.transit {
+            background: rgba(115, 0, 23, 0.1);
+            color: var(--pcolor);
+        }
+
+        .badge.pending {
+            background: rgba(199, 138, 28, 0.12);
+            color: var(--warn);
+        }
+
+        .badge.active {
+            background: rgba(30, 158, 90, 0.12);
+            color: var(--good);
+        }
+
+        .badge.maintenance {
+            background: rgba(199, 138, 28, 0.12);
+            color: var(--warn);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .pagination button {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: var(--bg);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        .pagination button.active {
+            background: var(--pcolor);
+            border-color: var(--pcolor);
+            color: #fff;
+        }
+
+        /* faculty grid - restructured to horizontal cards */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .fleet-card {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px;
+            transition: .3s ease;
+        }
+
+        .fleet-card:hover {
+            border-color: var(--pcolor);
+            box-shadow: 0 8px 20px rgba(115, 0, 23, 0.08);
+        }
+
+        .fleet-card img {
+            width: 76px;
+            height: 76px;
+            border-radius: 12px;
+            object-fit: cover;
+            object-position: top;
+            flex-shrink: 0;
+        }
+
+        .fleet-card-body {
+            flex: 1;
+        }
+
+        .fleet-card-body h4 {
+            font-family: 'Acme', sans-serif;
+            font-weight: 400;
+            font-size: 14.5px;
+            color: var(--ink);
+            margin-bottom: 5px;
+        }
+
+        .fleet-card-body p {
+            font-size: 11.5px;
+            color: var(--sub);
+            margin-bottom: 8px;
+        }
+
+        .fleet-card-body .contact-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .fleet-card-body .contact-row .material-symbols-outlined {
+            font-size: 15px;
+            color: var(--pcolor);
+            background: rgba(115, 0, 23, 0.08);
+            width: 26px;
+            height: 26px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .contact-row span{
+            cursor: pointer;
+        }
+
+        /* department gallery */
+        .wh-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .wh-card {
+            position: relative;
+            overflow: hidden;
+            height: 170px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+        }
+
+        .wh-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .6s ease;
+        }
+
+        .wh-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .wh-card .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 8, 8, 0.05) 40%, rgba(8, 8, 8, 0.85) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+        }
+
+        .wh-card .overlay h4 {
+            color: #fff;
+            font-family: 'Acme', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+        }
+
+        .wh-card .overlay span {
+            color: #f0c1cb;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* budget bars for department view (extra content) */
+        .budget-row {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .budget-item h5 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .budget-item h5 span {
+            color: var(--sub);
+            font-weight: 700;
+        }
+
+        .budget-track {
+            width: 100%;
+            height: 9px;
+            background: var(--bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+
+        .budget-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pcolor), var(--hcolor));
+            border-radius: 20px;
+        }
+
+        /* student card list (extra content, student view) */
+        .student-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .student-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+        }
+
+        .student-row img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .student-row .s-info {
+            flex: 1;
+        }
+
+        .student-row .s-info h5 {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .student-row .s-info p {
+            font-size: 11.5px;
+            color: var(--sub);
+        }
+
+        @media (max-width: 1250px) {
+            .bento .span-8 {
+                grid-column: span 12;
+            }
+
+            .bento .span-4 {
+                grid-column: span 12;
+            }
+
+            .bento .span-6 {
+                grid-column: span 12;
+            }
+        }
+
+        @media (max-width: 1100px) {
+
+            .stat-row,
+            .wh-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                position: fixed;
+                inset: 0px;
+                transform: translateX(-120%);
+                transition: .2s ease;
+                z-index: 9999;
+                width: 280px !important;
+            }
+
+            .sidebar-logo {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .sidebar.vis {
+                transform: translateX(0);
+            }
+
+            .sidebar.collapsed .nav-group-label,
+            .sidebar.collapsed .side-nav button span.label,
+            .sidebar.collapsed .sidebar-footer .who,
+            .sidebar.collapsed .sidebar-logo a img {
+                display: initial;
+            }
+
+            .rail-toggle {
+                display: none;
+            }
+
+            .topbar>h2 {
+                display: none;
+            }
+
+            .search-box {
+                display: none;
+            }
+
+            .topbar {
+                padding: 14px 16px;
+            }
+
+            .topbarimgcontainer {
+                display: flex;
+            }
+
+            .topbarimgcontainer .topbarmenu,
+            .topbarimgcontainer .tlogo {
+                display: flex;
+            }
+
+            .sidebar-top {
+                justify-content: space-between;
+            }
+
+            .sidebar-logo .adminclose {
+                display: block;
+            }
+
+            .content-scroll {
+                padding: 18px 16px 30px;
+            }
+
+            .fleet-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+
+            .stat-row,
+            .wh-grid,
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar-row2 {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .donut-wrap {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #topbarTitle {
+                display: none;
+            }
+
+            .topbar-date {
+                display: none;
+            }
+
+            .icon-btn {
+                width: 28px;
+                height: 28px;
+            }
+
+            .icon-btn span {
+                font-size: 20px;
+            }
+
+            .icon-btn .dot {
+                top: 2px;
+                right: 2px;
+                height: 6px;
+                width: 6px;
+            }
+
+
+            .topbar-avatar img {
+                width: 35px;
+                height: 35px;
+                margin-top: 4px;
+            }
+
+             .topbar-right{
+                gap: 10px;
+             }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="sidebar-logo">
+                <a href="index.html"><img src="./src/logo.webp" alt="Stackly University Logo"></a>
+                <span class="material-symbols-outlined adminclose">close</span>
+            </div>
+            <button class="rail-toggle" id="railToggle"><span
+                    class="material-symbols-outlined">chevron_left</span></button>
+        </div>
+
+        <div class="sidebar-scroll">
+            <span class="nav-group-label">Campus Management</span>
+            <nav class="side-nav">
+                <button class="active" onclick="showView('overview', this)"><span
+                        class="material-symbols-outlined">dashboard</span> <span class="label">Overview</span></button>
+                <button onclick="showView('orders', this)"><span class="material-symbols-outlined">assignment</span>
+                    <span class="label">Admissions</span></button>
+                <button onclick="showView('staff', this)"><span class="material-symbols-outlined">badge</span>
+                    <span class="label">Faculty</span></button>
+                <button onclick="showView('branches', this)"><span class="material-symbols-outlined">apartment</span>
+                    <span class="label">Departments</span></button>
+                <button onclick="showView('clients', this)"><span class="material-symbols-outlined">groups</span>
+                    <span class="label">Students</span></button>
+                    <button class="logoutbtn"><span class="material-symbols-outlined">logout</span>
+                    <span class="label">Logout</span></button>
+            </nav>
+
+        </div>
+
+        <div class="sidebar-footer">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80"
+                alt="Admin">
+            <div class="who">
+                <h4 id="username">Meera Nair</h4>
+                <span>Administrator</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main">
+
+        <div class="topbar">
+            <div class="topbar-row1">
+                <div class="breadcrumb">
+                    <span>Dashboard</span> <span class="material-symbols-outlined"
+                        style="font-size:14px;">chevron_right</span>
+                    <span class="current" id="crumbTitle">Overview</span>
+                </div>
+                <span class="topbar-date" id="topbarDate">Saturday, Aug 29 2026</span>
+            </div>
+
+            <div class="topbar-row2">
+                <div class="topbarimgcontainer">
+                    <span class="material-symbols-outlined topbarmenu">menu</span>
+                    <div class="tlogo">
+                        <a href="index.html"><img src="./src/logo.webp" alt="Stackly University Logo"></a>
+                    </div>
+                </div>
+                <h2 id="topbarTitle">Overview</h2>
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <span class="material-symbols-outlined errorpage">search</span>
+                        <input type="text" placeholder="Search students, faculty...">
+                    </div>
+                    <div class="icon-btn errorpage"><span class="material-symbols-outlined">notifications</span><span
+                            class="dot"></span></div>
+                    <div class="icon-btn errorpage"><span class="material-symbols-outlined">mail</span></div>
+                    <div class="topbar-avatar"><img
+                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80"
+                            alt="Admin"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-scroll">
+
+            <!-- ========== 1. OVERVIEW VIEW (bento layout) ========== -->
+            <div class="view active" id="overview">
+
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">groups</span>
+                        <div class="stat-info">
+                            <h2>12,485</h2>
+                            <p>Enrolled Students</p>
+                            <span class="delta">+3.2% this semester</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">badge</span>
+                        <div class="stat-info">
+                            <h2>320</h2>
+                            <p>Faculty & Staff</p>
+                            <span class="delta">+6 new this month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">apartment</span>
+                        <div class="stat-info">
+                            <h2>4</h2>
+                            <p>Academic Departments</p>
+                            <span class="delta">85+ programs offered</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <div class="stat-info">
+                            <h2>642</h2>
+                            <p>Pending Admissions</p>
+                            <span class="delta down">Review needed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick actions - extra content -->
+                <div class="panel">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="errorpage"><span class="material-symbols-outlined">person_add</span><span>Add
+                                Student</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">assignment_add</span><span>New
+                                Admission</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">badge</span><span>Add
+                                Faculty</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">summarize</span><span>Generate
+                                Report</span></button>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <!-- Enrollment trend bar chart - extra content -->
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Enrollment Trend</h3>
+                            <span class="topbar-date">Last 6 Semesters</span>
+                        </div>
+                        <div class="bar-chart">
+                            <div class="bar-col">
+                                <div class="bar" style="height:55%;"></div><span>Spr 24</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:64%;"></div><span>Fal 24</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:60%;"></div><span>Spr 25</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:78%;"></div><span>Fal 25</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:84%;"></div><span>Spr 26</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:100%;"></div><span>Fal 26</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Department distribution donut - extra content -->
+                    <div class="panel span-4">
+                        <h3>Students By Department</h3>
+                        <div class="donut-wrap">
+                            <div class="donut"></div>
+                            <div class="donut-legend">
+                                <div class="leg-item"><span class="dot"
+                                        style="background:var(--pcolor);"></span>Engineering (42%)</div>
+                                <div class="leg-item"><span class="dot"
+                                        style="background:var(--hcolor);"></span>Business (23%)</div>
+                                <div class="leg-item"><span class="dot" style="background:#e2b8c0;"></span>Arts & Design
+                                    (19%)</div>
+                                <div class="leg-item"><span class="dot" style="background:var(--line);"></span>Applied
+                                    Science (16%)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Admissions table -->
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Recent Admissions Activity</h3>
+                            <button class="d-btn errorpage">View All</button>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Program Applied</th>
+                                    <th>Latest Update</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="cell-item">#ADM-2201</td>
+                                    <td>B.Tech Engineering</td>
+                                    <td>Documents Verified</td>
+                                    <td><span class="badge delivered">Approved</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell-item">#ADM-2198</td>
+                                    <td>BBA Business Studies</td>
+                                    <td>Interview Scheduled</td>
+                                    <td><span class="badge transit">In Review</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell-item">#ADM-2194</td>
+                                    <td>B.Des Arts & Design</td>
+                                    <td>Awaiting Documents</td>
+                                    <td><span class="badge pending">Pending</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell-item">#ADM-2189</td>
+                                    <td>B.Sc Applied Science</td>
+                                    <td>Offer Letter Sent</td>
+                                    <td><span class="badge delivered">Approved</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Upcoming events - extra content -->
+                    <div class="panel span-4">
+                        <h3>Upcoming Events</h3>
+                        <div class="event-list">
+                            <div class="event-item">
+                                <div class="event-date"><strong>03</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Faculty Senate Meeting</h5>
+                                    <p>Main Hall, 10:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>09</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Admissions Deadline - Round 2</h5>
+                                    <p>All Departments</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>15</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Research Symposium</h5>
+                                    <p>Engineering Block, All Day</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>22</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Parent-Teacher Meet</h5>
+                                    <p>Business School Wing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Health -->
+                    <div class="panel span-6">
+                        <h3>Academic Health</h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Average Attendance Rate</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">91.4%</td>
+                                </tr>
+                                <tr>
+                                    <td>Open Course Sections</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">214</td>
+                                </tr>
+                                <tr>
+                                    <td>Faculty On Campus Today</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">268 / 320</td>
+                                </tr>
+                                <tr>
+                                    <td>Grievances Pending Review</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Recent Activity timeline - extra content -->
+                    <div class="panel span-6">
+                        <h3>Recent Activity</h3>
+                        <div class="timeline">
+                            <div class="t-item">
+                                <div class="t-dot"><span class="material-symbols-outlined"
+                                        style="font-size:15px;">task_alt</span></div>
+                                <div class="t-body">
+                                    <h5>Admission #ADM-2201 approved</h5>
+                                    <p>Divya Krishnan · 10 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <div class="t-dot"><span class="material-symbols-outlined"
+                                        style="font-size:15px;">person_add</span></div>
+                                <div class="t-body">
+                                    <h5>New faculty onboarded - Dr. Kavya Reddy</h5>
+                                    <p>HR Office · 2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <div class="t-dot"><span class="material-symbols-outlined"
+                                        style="font-size:15px;">event</span></div>
+                                <div class="t-body">
+                                    <h5>Research Symposium schedule finalised</h5>
+                                    <p>Events Desk · 5 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <div class="t-dot"><span class="material-symbols-outlined"
+                                        style="font-size:15px;">report</span></div>
+                                <div class="t-body">
+                                    <h5>Grievance ticket #GR-045 raised</h5>
+                                    <p>Student Affairs · Yesterday</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 2. ADMISSIONS VIEW ========== -->
+            <div class="view" id="orders">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <div class="stat-info">
+                            <h2>642</h2>
+                            <p>Open Applications</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">move_to_inbox</span>
+                        <div class="stat-info">
+                            <h2>58</h2>
+                            <p>New This Week</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">task_alt</span>
+                        <div class="stat-info">
+                            <h2>3,410</h2>
+                            <p>Admitted This Year</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">priority_high</span>
+                        <div class="stat-info">
+                            <h2>12</h2>
+                            <p>Flagged Applications</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>Admission Applications</h3>
+                        <button class="d-btn errorpage">New Application</button>
+                    </div>
+
+                    <div class="filter-chips" style="margin-bottom:16px;">
+                        <button class="active errorpage">All</button>
+                        <button class="errorpage">Approved</button>
+                        <button class="errorpage">In Review</button>
+                        <button class="errorpage">Pending</button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Applicant</th>
+                                <th>Program</th>
+                                <th>Assigned Officer</th>
+                                <th>Date Applied</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>#ADM-2201</td>
+                                <td>Rahul Menon</td>
+                                <td>B.Tech Engineering</td>
+                                <td>Divya Krishnan</td>
+                                <td>Jul 08</td>
+                                <td><span class="badge delivered">Approved</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#ADM-2198</td>
+                                <td>Sneha Pillai</td>
+                                <td>BBA Business Studies</td>
+                                <td>Priya Suresh</td>
+                                <td>Jul 07</td>
+                                <td><span class="badge transit">In Review</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#ADM-2194</td>
+                                <td>Arjun Nair</td>
+                                <td>B.Des Arts & Design</td>
+                                <td>Karthik Raja</td>
+                                <td>Jul 07</td>
+                                <td><span class="badge pending">Pending</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#ADM-2189</td>
+                                <td>Meghana Rao</td>
+                                <td>B.Sc Applied Science</td>
+                                <td>Meera Nair</td>
+                                <td>Jul 06</td>
+                                <td><span class="badge delivered">Approved</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#ADM-2183</td>
+                                <td>Vikram Das</td>
+                                <td>B.Tech Engineering</td>
+                                <td>Karthik Raja</td>
+                                <td>Jul 05</td>
+                                <td><span class="badge transit">In Review</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination">
+                        <button class="errorpage">&lt;</button>
+                        <button class="active errorpage">1</button>
+                        <button class="errorpage">2</button>
+                        <button class="errorpage">3</button>
+                        <button class="errorpage">&gt;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 3. FACULTY VIEW ========== -->
+            <div class="view" id="staff">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">badge</span>
+                        <div class="stat-info">
+                            <h2>320</h2>
+                            <p>Total Faculty</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">school</span>
+                        <div class="stat-info">
+                            <h2>184</h2>
+                            <p>Professors</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">science</span>
+                        <div class="stat-info">
+                            <h2>96</h2>
+                            <p>Research Faculty</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">event_busy</span>
+                        <div class="stat-info">
+                            <h2>7</h2>
+                            <p>On Leave</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Faculty Roster</h3>
+                            <div class="filter-chips">
+                                <button class="active errorpage">All</button>
+                                <button class="errorpage">Engineering</button>
+                                <button class="errorpage">Business</button>
+                                <button class="errorpage">Arts</button>
+                            </div>
+                        </div>
+                        <div class="fleet-grid">
+                            <div class="fleet-card">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80"
+                                    alt="Dr. Aravind Iyer">
+                                <div class="fleet-card-body">
+                                    <h4>Dr. Aravind Iyer</h4>
+                                    <p>Dean, Engineering · 6 Courses</p>
+                                    <span class="badge active">On Campus</span>
+                                </div>
+                                <div class="contact-row">
+                                    <span class="material-symbols-outlined errorpage">mail</span>
+                                    <span class="material-symbols-outlined errorpage">call</span>
+                                </div>
+                            </div>
+                            <div class="fleet-card">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80"
+                                    alt="Dr. Meera Nair">
+                                <div class="fleet-card-body">
+                                    <h4>Dr. Meera Nair</h4>
+                                    <p>Head, Business School · 5 Courses</p>
+                                    <span class="badge active">On Campus</span>
+                                </div>
+                                <div class="contact-row">
+                                    <span class="material-symbols-outlined errorpage">mail</span>
+                                    <span class="material-symbols-outlined errorpage">call</span>
+                                </div>
+                            </div>
+                            <div class="fleet-card">
+                                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=200&q=80"
+                                    alt="Prof. Ravi Shankar">
+                                <div class="fleet-card-body">
+                                    <h4>Prof. Ravi Shankar</h4>
+                                    <p>Head, Arts & Design · 4 Courses</p>
+                                    <span class="badge maintenance">On Leave</span>
+                                </div>
+                                <div class="contact-row">
+                                    <span class="material-symbols-outlined errorpage">mail</span>
+                                    <span class="material-symbols-outlined errorpage">call</span>
+                                </div>
+                            </div>
+                            <div class="fleet-card">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80"
+                                    alt="Prof. Daniel Cho">
+                                <div class="fleet-card-body">
+                                    <h4>Prof. Daniel Cho</h4>
+                                    <p>Dean Of Academics · 4 Courses</p>
+                                    <span class="badge active">On Campus</span>
+                                </div>
+                                <div class="contact-row">
+                                    <span class="material-symbols-outlined errorpage">mail</span>
+                                    <span class="material-symbols-outlined errorpage">call</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Faculty availability today - extra content -->
+                    <div class="panel span-4">
+                        <h3>On Leave Today</h3>
+                        <div class="event-list">
+                            <div class="event-item">
+                                <div class="event-date" style="background:var(--pcolor);">
+                                    <strong>29</strong><span>Aug</span>
+                                </div>
+                                <div class="event-info">
+                                    <h5>Prof. Ravi Shankar</h5>
+                                    <p>Arts & Design · Back Sep 02</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date" style="background:var(--pcolor);">
+                                    <strong>29</strong><span>Aug</span>
+                                </div>
+                                <div class="event-info">
+                                    <h5>Dr. Sameer Qureshi</h5>
+                                    <p>Applied Science · Back Sep 01</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date" style="background:var(--pcolor);">
+                                    <strong>30</strong><span>Aug</span>
+                                </div>
+                                <div class="event-info">
+                                    <h5>Dr. Fatima Sheikh</h5>
+                                    <p>Engineering · Back Sep 03</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 4. DEPARTMENTS VIEW ========== -->
+            <div class="view" id="branches">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">apartment</span>
+                        <div class="stat-info">
+                            <h2>4</h2>
+                            <p>Academic Departments</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">school</span>
+                        <div class="stat-info">
+                            <h2>85</h2>
+                            <p>Programs Offered</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">library_books</span>
+                        <div class="stat-info">
+                            <h2>412</h2>
+                            <p>Active Course Sections</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">science</span>
+                        <div class="stat-info">
+                            <h2>18</h2>
+                            <p>Research Labs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>Departments</h3>
+                    <div class="wh-grid">
+                        <div class="wh-card">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80"
+                                alt="Engineering department">
+                            <div class="overlay">
+                                <h4>School of Engineering</h4><span>3,240 Students Enrolled</span>
+                            </div>
+                        </div>
+                        <div class="wh-card">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80"
+                                alt="Business department">
+                            <div class="overlay">
+                                <h4>School of Business</h4><span>2,860 Students Enrolled</span>
+                            </div>
+                        </div>
+                        <div class="wh-card">
+                            <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=500&q=80"
+                                alt="Arts and design department">
+                            <div class="overlay">
+                                <h4>School of Arts & Design</h4><span>1,940 Students Enrolled</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <div class="panel span-8">
+                        <h3>Department Snapshot</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Department</th>
+                                    <th>Focus Area</th>
+                                    <th>Active Faculty</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>School of Engineering</td>
+                                    <td>Technology &amp; Applied Research</td>
+                                    <td>112</td>
+                                    <td><span class="badge active">Fully Staffed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>School of Business</td>
+                                    <td>Management &amp; Finance</td>
+                                    <td>84</td>
+                                    <td><span class="badge active">Fully Staffed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>School of Arts & Design</td>
+                                    <td>Creative &amp; Visual Studies</td>
+                                    <td>58</td>
+                                    <td><span class="badge maintenance">Hiring Open</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Department budget usage - extra content -->
+                    <div class="panel span-4">
+                        <h3>Annual Budget Usage</h3>
+                        <div class="budget-row">
+                            <div class="budget-item">
+                                <h5>Engineering <span>78%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:78%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>Business <span>64%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:64%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>Arts & Design <span>52%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:52%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>Applied Science <span>45%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:45%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 5. STUDENTS VIEW ========== -->
+            <div class="view" id="clients">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">groups</span>
+                        <div class="stat-info">
+                            <h2>12,485</h2>
+                            <p>Total Students</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">person_add</span>
+                        <div class="stat-info">
+                            <h2>648</h2>
+                            <p>New This Semester</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">workspace_premium</span>
+                        <div class="stat-info">
+                            <h2>1,120</h2>
+                            <p>Scholarship Holders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">support_agent</span>
+                        <div class="stat-info">
+                            <h2>21</h2>
+                            <p>Open Support Tickets</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Student Directory</h3>
+                            <button class="d-btn errorpage">Add Student</button>
+                        </div>
+
+                        <div class="filter-chips" style="margin-bottom:16px;">
+                            <button class="active errorpage">All</button>
+                            <button class="errorpage">Scholarship</button>
+                            <button class="errorpage">New Admits</button>
+                            <button class="errorpage">Final Year</button>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Email</th>
+                                    <th>Program</th>
+                                    <th>Year</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cell-item">Priya Sharma</td>
+                                    <td>priya.s@stackly.edu</td>
+                                    <td>B.Tech Engineering</td>
+                                    <td>Final Year</td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-item">Karthik Raj</td>
+                                    <td>karthik.r@stackly.edu</td>
+                                    <td>BBA Business Studies</td>
+                                    <td>Graduate</td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-item">Ananya Das</td>
+                                    <td>ananya.d@stackly.edu</td>
+                                    <td>B.Des Arts & Design</td>
+                                    <td>Second Year</td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-item">Vikram Iyer</td>
+                                    <td>vikram.i@stackly.edu</td>
+                                    <td>B.Sc Applied Science</td>
+                                    <td>Third Year</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="pagination">
+                            <button class="errorpage">&lt;</button>
+                            <button class="active errorpage">1</button>
+                            <button class="errorpage">2</button>
+                            <button class="errorpage">3</button>
+                            <button class="errorpage">&gt;</button>
+                        </div>
+                    </div>
+
+                    <!-- Support tickets - extra content -->
+                    <div class="panel span-4">
+                        <h3>Open Support Tickets</h3>
+                        <div class="student-list">
+                            <div class="student-row">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80"
+                                    alt="Student">
+                                <div class="s-info">
+                                    <h5>Fee Payment Issue</h5>
+                                    <p>Priya Sharma · #TCK-1042</p>
+                                </div>
+                                <span class="badge pending">Open</span>
+                            </div>
+                            <div class="student-row">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+                                    alt="Student">
+                                <div class="s-info">
+                                    <h5>Hostel Room Change</h5>
+                                    <p>Karthik Raj · #TCK-1039</p>
+                                </div>
+                                <span class="badge transit">In Progress</span>
+                            </div>
+                            <div class="student-row">
+                                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=100&q=80"
+                                    alt="Student">
+                                <div class="s-info">
+                                    <h5>Scholarship Query</h5>
+                                    <p>Ananya Das · #TCK-1035</p>
+                                </div>
+                                <span class="badge pending">Open</span>
+                            </div>
+                            <div class="student-row">
+                                <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=100&q=80"
+                                    alt="Student">
+                                <div class="s-info">
+                                    <h5>Course Registration Help</h5>
+                                    <p>Vikram Iyer · #TCK-1031</p>
+                                </div>
+                                <span class="badge delivered">Resolved</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+
+        const topbarmenu = document.querySelector(".topbarmenu")
+        const adminclose = document.querySelector(".adminclose")
+        const sidebar = document.querySelector(".sidebar")
+        const railToggle = document.querySelector("#railToggle")
+
+        topbarmenu.addEventListener("click", () => {
+            sidebar.classList.toggle('vis')
+        })
+
+        adminclose.addEventListener("click", () => {
+            sidebar.classList.remove('vis')
+        })
+
+        railToggle.addEventListener("click", () => {
+            sidebar.classList.toggle('collapsed')
+            const icon = railToggle.querySelector('.material-symbols-outlined')
+            icon.textContent = sidebar.classList.contains('collapsed') ? 'chevron_right' : 'chevron_left'
+        })
+
+        const logoutbtn = document.querySelector(".logoutbtn")
+        logoutbtn.addEventListener("click", () => {
+            window.location.href = "index.html"
+        })
+
+        const username = document.querySelector("#username");
+        const email = localStorage.getItem("useremail");
+
+        if (email) {
+            username.textContent = email.split("@")[0];
+        }
+
+        let errorpage = document.querySelectorAll(".errorpage")
+        errorpage.forEach((error) => {
+            error.addEventListener("click", () => {
+                window.location.href = "404.html";
+            })
+        })
+
+        const titles = {
+            overview: "Overview",
+            orders: "Admissions",
+            staff: "Faculty",
+            branches: "Departments",
+            clients: "Students"
+        };
+
+        function showView(id, btn) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+
+              window.scrollTo({
+                top:"0px",
+                behavior:"smooth"
+            })
+
+            document.querySelectorAll('.side-nav button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.getElementById('topbarTitle').innerText = titles[id];
+            document.getElementById('crumbTitle').innerText = titles[id];
+            sidebar.classList.remove('vis')
+        }
+
+        // live date in topbar
+        const dateEl = document.getElementById('topbarDate');
+        const today = new Date();
+        dateEl.textContent = today.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
+    </script>
+
+</body>
+
+</html>

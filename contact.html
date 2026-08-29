@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+    rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+<style>
+    :root {
+        --pcolor: #730017;
+        --dark: #080808;
+    }
+
+    .cnt-wrap {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Nunito Sans", sans-serif;
+    }
+
+    .cnt-wrap {
+        overflow-x: hidden;
+        color: var(--dark);
+    }
+
+    .cnt-wrap .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding-inline: 20px;
+    }
+
+    .cnt-wrap .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--pcolor);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+
+    .cnt-wrap .eyebrow::before {
+        content: "";
+        width: 30px;
+        height: 3px;
+        background: var(--pcolor);
+        display: inline-block;
+    }
+
+    .cnt-wrap h2 {
+        font-family: "Acme", sans-serif;
+        font-size: 44px;
+        line-height: 1.1;
+        text-transform: uppercase;
+        color: var(--dark);
+        margin-bottom: 18px;
+    }
+
+    .cnt-wrap .btn-primary {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 32px;
+        background: var(--pcolor);
+        border: none;
+        color: white;
+        border-radius: 7px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .cnt-wrap .btn-primary span {
+        transform: rotate(-50deg);
+        transition: .5s ease;
+        font-size: 20px;
+    }
+
+    .cnt-wrap .btn-primary::before {
+        content: "";
+        height: 100%;
+        width: 0%;
+        background: black;
+        transition: width .5s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .cnt-wrap .btn-primary:hover::before {
+        width: 100%;
+    }
+
+    .cnt-wrap .btn-primary:hover span {
+        transform: rotate(0deg);
+    }
+
+    /* ---------- 1. PAGE BANNER ---------- */
+    .cnt-banner {
+        position: relative;
+        min-height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: url("https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    }
+
+    .cnt-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(8, 8, 8, 0.65);
+    }
+
+    .cnt-banner-content {
+        position: relative;
+        z-index: 2;
+        padding-top: 90px;
+    }
+
+    .cnt-banner-content .eyebrow {
+        justify-content: center;
+        color: #ffb3bd;
+    }
+
+    .cnt-banner-content .eyebrow::before {
+        background: #ffb3bd;
+    }
+
+    .cnt-banner-content h1 {
+        font-family: "Acme", sans-serif;
+        font-size: 66px;
+        text-transform: uppercase;
+        color: white;
+        line-height: 1;
+        margin-bottom: 18px;
+    }
+
+    .cnt-banner-content .crumb {
+        color: #e7e7e7;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .cnt-banner-content .crumb span {
+        color: var(--pcolor);
+        background: white;
+        padding: 0 8px;
+        border-radius: 3px;
+        margin: 0 6px;
+    }
+
+    /* ---------- 2. CONTACT INFO CARDS ---------- */
+    .cnt-info {
+        padding: 90px 0 60px;
+    }
+
+    .cnt-info-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+    .cnt-info-card {
+        background: #f8f4f4;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 34px 26px;
+        text-align: left;
+        transition: .4s ease;
+    }
+
+    .cnt-info-card:hover {
+        background: var(--pcolor);
+        transform: translateY(-6px);
+    }
+
+    .cnt-info-card:hover h4,
+    .cnt-info-card:hover p,
+    .cnt-info-card:hover a {
+        color: white !important;
+    }
+
+    .cnt-info-card .icon {
+        height: 54px;
+        width: 54px;
+        border-radius: 50%;
+        background: var(--pcolor);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 20px;
+        transition: .4s ease;
+    }
+
+    .cnt-info-card:hover .icon {
+        background: white;
+        color: var(--pcolor);
+    }
+
+    .cnt-info-card h4 {
+        font-size: 18px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        color: var(--dark);
+    }
+
+    .cnt-info-card p,
+    .cnt-info-card a {
+        font-size: 14.5px;
+        color: #5a5a5a;
+        line-height: 1.6;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* ---------- 3. FORM + IMAGE ---------- */
+    .cnt-form-section {
+        padding: 60px 0 100px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .cnt-form-section .imgbox {
+        position: relative;
+    }
+
+    .cnt-form-section .imgbox img {
+        width: 100%;
+        height: 560px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .cnt-form-section .imgbox .badge {
+        position: absolute;
+        bottom: -25px;
+        left: -25px;
+        background: var(--dark);
+        color: white;
+        padding: 22px 26px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .cnt-form-section .imgbox .badge i {
+        font-size: 26px;
+        color: var(--pcolor);
+    }
+
+    .cnt-form-section .imgbox .badge strong {
+        display: block;
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+
+    .cnt-form-section .imgbox .badge span {
+        font-size: 13px;
+        color: #cfcfcf;
+    }
+
+    .cnt-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .cnt-form .row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+
+    .cnt-form input,
+    .cnt-form textarea {
+        width: 100%;
+        padding: 15px 20px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 15px;
+        outline: none;
+        transition: .3s ease;
+    }
+
+    .cnt-form input:focus,
+    .cnt-form textarea:focus {
+        border-color: var(--pcolor);
+    }
+
+    .cnt-form textarea {
+        resize: vertical;
+        min-height: 130px;
+    }
+
+    .cnt-form button {
+        margin-top: 6px;
+    }
+
+    /* ---------- 4. MAP ---------- */
+    .cnt-map-section {
+        padding: 0 0 100px;
+    }
+
+    .cnt-map-box {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 420px;
+    }
+
+    .cnt-map-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .cnt-map-box .pin {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        background: white;
+        padding: 14px 22px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .cnt-map-box .pin i {
+        color: var(--pcolor);
+        font-size: 24px;
+    }
+
+    .cnt-map-box .pin strong {
+        display: block;
+        font-size: 14px;
+    }
+
+    .cnt-map-box .pin span {
+        font-size: 12.5px;
+        color: #5a5a5a;
+    }
+
+    /* ---------- 5. DEPARTMENT CONTACTS ---------- */
+    .cnt-dept-section {
+        padding: 100px 0;
+        background: #f8f4f4;
+    }
+
+    .cnt-dept-head {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 60px;
+    }
+
+    .cnt-dept-head .eyebrow {
+        justify-content: center;
+    }
+
+    .cnt-dept-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    .cnt-dept-card {
+        background: white;
+        border-radius: 10px;
+        border: 1px solid #eee;
+        padding: 30px 26px;
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        transition: .4s ease;
+    }
+
+    .cnt-dept-card:hover {
+        border-color: var(--pcolor);
+        box-shadow: 0 15px 30px rgba(115, 0, 23, 0.1);
+        transform: translateY(-5px);
+    }
+
+    .cnt-dept-card .icon {
+        height: 50px;
+        width: 50px;
+        min-width: 50px;
+        border-radius: 50%;
+        background: var(--pcolor);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+
+    .cnt-dept-card h4 {
+        font-size: 17px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .cnt-dept-card p {
+        font-size: 14px;
+        color: #5a5a5a;
+        margin-bottom: 3px;
+    }
+
+    /* ---------- 6. CTA ---------- */
+    .cnt-cta {
+        position: relative;
+        padding: 110px 0;
+        text-align: center;
+        background: url("https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat fixed;
+    }
+
+    .cnt-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(115, 0, 23, 0.88);
+    }
+
+    .cnt-cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .cnt-cta-content h2 {
+        color: white;
+    }
+
+    .cnt-cta-content p {
+        color: #f1d9dc;
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 34px;
+    }
+
+    .cnt-cta .btn-primary {
+        margin: 0 auto;
+        background: white;
+        color: var(--pcolor);
+    }
+
+    .cnt-cta .btn-primary::before {
+        background: var(--dark);
+    }
+
+    .cnt-cta .btn-primary:hover {
+        color: white;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:1000px) {
+        .cnt-info-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .cnt-form-section {
+            grid-template-columns: 1fr;
+        }
+
+        .cnt-dept-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .cnt-banner-content h1 {
+            font-size: 50px;
+        }
+    }
+
+    @media (max-width:650px) {
+        .cnt-info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cnt-dept-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cnt-form .row2 {
+            grid-template-columns: 1fr;
+        }
+
+        .cnt-banner-content h1 {
+            font-size: 36px;
+        }
+
+        .cnt-form-section .imgbox .badge {
+            left: 10px;
+            bottom: -20px;
+            padding: 16px 18px;
+        }
+
+        h2 {
+            font-size: 30px !important;
+        }
+    }
+</style>
+</head>
+<body>
+    
+
+
+
+     <header class="header">
+
+        <div class="navbar">
+
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+
+            <ul class="menus">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+
+            <div class="navicons">
+                <div>
+                    <span class="material-symbols-outlined errorpage">call</span>
+                    <span class="material-symbols-outlined logicon">person</span>
+                    <span class="material-symbols-outlined menubtn">menu</span>
+
+                </div>
+                <a href="login.html" class="loginbtn">Login<span class="material-symbols-outlined">login</span></a>
+            </div>
+
+        </div>
+        <div class="sidebar">
+            <span class="material-symbols-outlined closebtn">close</span>
+            <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+
+            <ul class="sidemenus">
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <p>Create engaging and accessible learning environments with a smart university theme built for modern
+                academic institutions.</p>
+            <div class="sideimgwrap">
+                <img src="./src/sideimg.webp" alt="side image">
+                <button class="sidebtn errorpage">Apply Now<span class="material-symbols-outlined">arrow_right_alt</span></button>
+            </div>
+
+            <div class="sidebar-details">
+                <a href="404.html"><span class="material-symbols-outlined">call</span>+91 12345 67890</a>
+                <a href="404.html"><span class="material-symbols-outlined">location_on</span> Yarra Park, Melbourne,
+                    Austraila</a>
+                <div class="sideicons">
+                    <p>follow Us:</p>
+
+                    <div class="footer-sotial-links">
+                        <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+    <div class="cnt-wrap">
+        
+    <!-- 1. PAGE BANNER -->
+    <section class="cnt-banner">
+        <div class="cnt-banner-content">
+            <p class="eyebrow">Get In Touch</p>
+            <h1>Contact Us</h1>
+            <p class="crumb">Home <span>/</span> Contact</p>
+        </div>
+    </section>
+
+    <!-- 2. CONTACT INFO CARDS -->
+    <section class="cnt-info container">
+        <div class="cnt-info-grid">
+            <div class="cnt-info-card">
+                <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                <h4>Call Us</h4>
+                <a href="tel:+911234567890">+91 12345 67890</a>
+                <a href="tel:+911234567891">+91 12345 67891</a>
+            </div>
+
+            <div class="cnt-info-card">
+                <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                <h4>Email Us</h4>
+                <a href="mailto:admissions@stackly.edu">admissions@stackly.edu</a>
+                <a href="mailto:support@stackly.edu">support@stackly.edu</a>
+            </div>
+
+            <div class="cnt-info-card">
+                <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                <h4>Visit Us</h4>
+                <p>Yarra Park, Melbourne,</p>
+                <p>Australia, 3002</p>
+            </div>
+
+            <div class="cnt-info-card">
+                <div class="icon"><i class="fa-solid fa-clock"></i></div>
+                <h4>Office Hours</h4>
+                <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                <p>Sat: 10:00 AM - 2:00 PM</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. FORM + IMAGE -->
+    <section class="cnt-form-section container">
+        <div class="imgbox">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80"
+                alt="University front desk assisting a student">
+            <div class="badge">
+                <i class="fa-solid fa-headset"></i>
+                <div>
+                    <strong>Need Quick Help?</strong>
+                    <span>We reply within 24 hours</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <p class="eyebrow">Send A Message</p>
+            <h2>We'd Love To Hear From You</h2>
+            <p style="color:#5a5a5a; font-size:16px; line-height:1.7; margin-bottom:26px;">Fill in the form below and
+                our admissions team will get back to you with everything you need to know.</p>
+
+            <form class="cnt-form">
+                <div class="row2">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="row2">
+                    <input type="tel" placeholder="Phone Number">
+                    <input type="text" placeholder="Subject">
+                </div>
+                <textarea placeholder="Your Message"></textarea>
+                <button type="submit" class="btn-primary">Send Message<span
+                        class="material-symbols-outlined">arrow_right_alt</span></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 4. MAP -->
+    <section class="cnt-map-section container">
+        <div class="cnt-map-box">
+            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1600&q=80"
+                alt="Map view of university campus location">
+            <div class="pin">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <strong>University of Stackly</strong>
+                    <span>Yarra Park, Melbourne, Australia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. DEPARTMENT CONTACTS -->
+    <section class="cnt-dept-section">
+        <div class="container">
+            <div class="cnt-dept-head">
+                <p class="eyebrow">Direct Lines</p>
+                <h2>Reach The Right Department</h2>
+                <p style="color:#5a5a5a; font-size:16px;">Skip the wait, contact the department that can help you
+                    fastest.</p>
+            </div>
+
+            <div class="cnt-dept-grid">
+                <div class="cnt-dept-card">
+                    <div class="icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div>
+                        <h4>Admissions Office</h4>
+                        <p>+91 12345 67892</p>
+                        <p>admissions@stackly.edu</p>
+                    </div>
+                </div>
+
+                <div class="cnt-dept-card">
+                    <div class="icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div>
+                        <h4>Finance & Fees</h4>
+                        <p>+91 12345 67893</p>
+                        <p>finance@stackly.edu</p>
+                    </div>
+                </div>
+
+                <div class="cnt-dept-card">
+                    <div class="icon"><i class="fa-solid fa-house-chimney"></i></div>
+                    <div>
+                        <h4>Housing Office</h4>
+                        <p>+91 12345 67894</p>
+                        <p>housing@stackly.edu</p>
+                    </div>
+                </div>
+
+                <div class="cnt-dept-card">
+                    <div class="icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <div>
+                        <h4>Career Services</h4>
+                        <p>+91 12345 67895</p>
+                        <p>careers@stackly.edu</p>
+                    </div>
+                </div>
+
+                <div class="cnt-dept-card">
+                    <div class="icon"><i class="fa-solid fa-earth-asia"></i></div>
+                    <div>
+                        <h4>International Desk</h4>
+                        <p>+91 12345 67896</p>
+                        <p>global@stackly.edu</p>
+                    </div>
+                </div>
+
+                <div class="cnt-dept-card">
+                    <div class="icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div>
+                        <h4>Health & Wellness</h4>
+                        <p>+91 12345 67897</p>
+                        <p>wellness@stackly.edu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CTA -->
+    <section class="cnt-cta">
+        <div class="cnt-cta-content">
+            <p class="eyebrow" style="justify-content:center; color:#ffd6da;">Still Have Questions?</p>
+            <h2>Let's Talk About Your Future</h2>
+            <p>Book a campus visit or a one-on-one call with our admissions counsellors, no pressure, just answers.
+            </p>
+            <a href="tel:+911234567890" class="btn-primary">Call Us Now<span
+                    class="material-symbols-outlined">arrow_right_alt</span></a>
+        </div>
+    </section>
+
+    </div>
+
+        <footer class="footer">
+
+        <div class="footer1">
+            <div class="foot1">
+                <a href="index.html" class="logoimage"><img src="./src/logo.webp" alt="company Logo"></a>
+                <p>We are Passionate Education Dedicated to providinng high-quality Resources learners all backgrunds
+                </p>
+                <div class="footer-sotial-links">
+                    <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="foot2 foot4">
+
+                <h2>Quick Links</h2>
+                <div class="links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blogs</a>
+                    <a href="service.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+            </div>
+
+            <div class="foot2 foot4">
+
+                <h2>Our Campus</h2>
+                <div class="links">
+                    <a href="404.html">Academic</a>
+                    <a href="404.html">Athletics</a>
+                    <a href="404.html">Campus Life</a>
+                    <a href="404.html">Research</a>
+                    <a href="404.html">Acadeemic Area</a>
+                </div>
+
+            </div>
+
+            <div class="foot3 foot4">
+                <h2>Newsletter</h2>
+                <p>Stay connected with the latest news, events, and updates from our university.</p>
+
+                <div class="footerform">
+                    <input type="email" id="foot-email" placeholder="Enter email">
+                    <button id="sub-btn" class="herobtn">Subscribe</button>
+                    <p class="foot-error"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer2">
+            <p>Copy Rights @ 2026 by Stackly</p>
+            <div>
+                <a href="404.html">Terms & Conditions</a> |
+                <a href="404.html">Privacy Policy</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+
+</body>
+</html>
+
