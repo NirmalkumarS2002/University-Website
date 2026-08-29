@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stackly University - Admin Dashboard</title>
+    <title>Stackly University - Student Dashboard</title>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
@@ -48,7 +48,7 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
-        /* ================= SIDEBAR (restructured: icon rail + collapsible labels) ================= */
+        /* ================= SIDEBAR ================= */
         .sidebar {
             width: 250px;
             flex-shrink: 0;
@@ -219,7 +219,6 @@
             min-width: 0;
         }
 
-        /* --- Topbar restructured: breadcrumb row + utility row stacked --- */
         .topbar {
             background: var(--card);
             border-bottom: 1px solid var(--line);
@@ -416,7 +415,6 @@
             color: #fff;
         }
 
-        /* generic panel */
         .panel {
             background: var(--card);
             border: 1px solid var(--line);
@@ -473,7 +471,6 @@
             color: #fff;
         }
 
-        /* ---------- BENTO GRID (new overview structure) ---------- */
         .bento {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -496,7 +493,6 @@
             grid-column: span 12;
         }
 
-        /* stat cards - redesigned horizontal style with sparkbar */
         .stat-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -565,7 +561,6 @@
             color: #c0263a;
         }
 
-        /* bar chart (css only, no libs) */
         .bar-chart {
             display: flex;
             align-items: flex-end;
@@ -598,7 +593,6 @@
             text-transform: uppercase;
         }
 
-        /* donut chart css */
         .donut-wrap {
             display: flex;
             align-items: center;
@@ -645,7 +639,6 @@
             border-radius: 3px;
         }
 
-        /* timeline / activity feed */
         .timeline {
             display: flex;
             flex-direction: column;
@@ -693,7 +686,6 @@
             color: var(--sub);
         }
 
-        /* calendar / events widget */
         .event-list {
             display: flex;
             flex-direction: column;
@@ -748,7 +740,6 @@
             color: var(--sub);
         }
 
-        /* quick actions grid */
         .quick-actions {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -786,7 +777,6 @@
             text-align: center;
         }
 
-        /* table */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -898,7 +888,6 @@
             color: #fff;
         }
 
-        /* faculty grid - restructured to horizontal cards */
         .fleet-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -967,11 +956,10 @@
             cursor: pointer;
         }
 
-        .contact-row span{
+        .contact-row span {
             cursor: pointer;
         }
 
-        /* department gallery */
         .wh-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1021,7 +1009,6 @@
             letter-spacing: 1px;
         }
 
-        /* budget bars for department view (extra content) */
         .budget-row {
             display: flex;
             flex-direction: column;
@@ -1056,7 +1043,6 @@
             border-radius: 20px;
         }
 
-        /* student card list (extra content, student view) */
         .student-list {
             display: flex;
             flex-direction: column;
@@ -1239,9 +1225,9 @@
                 margin-top: 4px;
             }
 
-             .topbar-right{
+            .topbar-right {
                 gap: 10px;
-             }
+            }
 
         }
     </style>
@@ -1261,30 +1247,30 @@
         </div>
 
         <div class="sidebar-scroll">
-            <span class="nav-group-label">Campus Management</span>
+            <span class="nav-group-label">Student Portal</span>
             <nav class="side-nav">
                 <button class="active" onclick="showView('overview', this)"><span
                         class="material-symbols-outlined">dashboard</span> <span class="label">Overview</span></button>
-                <button onclick="showView('orders', this)"><span class="material-symbols-outlined">assignment</span>
-                    <span class="label">Admissions</span></button>
+                <button onclick="showView('orders', this)"><span class="material-symbols-outlined">menu_book</span>
+                    <span class="label">My Courses</span></button>
                 <button onclick="showView('staff', this)"><span class="material-symbols-outlined">badge</span>
-                    <span class="label">Faculty</span></button>
+                    <span class="label">My Instructors</span></button>
                 <button onclick="showView('branches', this)"><span class="material-symbols-outlined">apartment</span>
-                    <span class="label">Departments</span></button>
-                <button onclick="showView('clients', this)"><span class="material-symbols-outlined">groups</span>
-                    <span class="label">Students</span></button>
-                    <button class="logoutbtn"><span class="material-symbols-outlined">logout</span>
+                    <span class="label">Campus Services</span></button>
+                <button onclick="showView('clients', this)"><span class="material-symbols-outlined">payments</span>
+                    <span class="label">Fees & Payments</span></button>
+                <button class="logoutbtn"><span class="material-symbols-outlined">logout</span>
                     <span class="label">Logout</span></button>
             </nav>
 
         </div>
 
         <div class="sidebar-footer">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80"
-                alt="Admin">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80"
+                alt="Student">
             <div class="who">
-                <h4 id="username">Meera Nair</h4>
-                <span>Administrator</span>
+                <h4 id="username">Priya Sharma</h4>
+                <span>STUDENT</span>
             </div>
         </div>
     </aside>
@@ -1313,233 +1299,226 @@
                 <div class="topbar-right">
                     <div class="search-box">
                         <span class="material-symbols-outlined errorpage">search</span>
-                        <input type="text" placeholder="Search students, faculty...">
+                        <input type="text" placeholder="Search courses, faculty...">
                     </div>
                     <div class="icon-btn errorpage"><span class="material-symbols-outlined">notifications</span><span
                             class="dot"></span></div>
                     <div class="icon-btn errorpage"><span class="material-symbols-outlined">mail</span></div>
                     <div class="topbar-avatar"><img
-                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80"
-                            alt="Admin"></div>
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80"
+                            alt="Student"></div>
                 </div>
             </div>
         </div>
 
         <div class="content-scroll">
 
-            <!-- ========== 1. OVERVIEW VIEW (bento layout) ========== -->
+            <!-- ========== 1. OVERVIEW VIEW ========== -->
             <div class="view active" id="overview">
 
                 <div class="stat-row">
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">groups</span>
+                        <span class="material-symbols-outlined">grade</span>
                         <div class="stat-info">
-                            <h2>12,485</h2>
-                            <p>Enrolled Students</p>
-                            <span class="delta">+3.2% this semester</span>
+                            <h2>8.7</h2>
+                            <p>Current CGPA</p>
+                            <span class="delta">+0.3 this semester</span>
                         </div>
                     </div>
 
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">badge</span>
+                        <span class="material-symbols-outlined">event_available</span>
                         <div class="stat-info">
-                            <h2>320</h2>
-                            <p>Faculty & Staff</p>
-                            <span class="delta">+6 new this month</span>
+                            <h2>91%</h2>
+                            <p>Attendance Rate</p>
+                            <span class="delta">Above required 75%</span>
                         </div>
                     </div>
 
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">apartment</span>
+                        <span class="material-symbols-outlined">payments</span>
                         <div class="stat-info">
-                            <h2>4</h2>
-                            <p>Academic Departments</p>
-                            <span class="delta">85+ programs offered</span>
+                            <h2>₹42,000</h2>
+                            <p>Fees Due</p>
+                            <span class="delta down">Due by Sep 15</span>
                         </div>
                     </div>
 
                     <div class="stat-card">
                         <span class="material-symbols-outlined">assignment</span>
                         <div class="stat-info">
-                            <h2>642</h2>
-                            <p>Pending Admissions</p>
-                            <span class="delta down">Review needed</span>
+                            <h2>5</h2>
+                            <p>Assignments Pending</p>
+                            <span class="delta down">2 due this week</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Quick actions - extra content -->
                 <div class="panel">
                     <h3>Quick Actions</h3>
                     <div class="quick-actions">
-                        <button class="errorpage"><span class="material-symbols-outlined">person_add</span><span>Add
-                                Student</span></button>
-                        <button class="errorpage"><span class="material-symbols-outlined">assignment_add</span><span>New
-                                Admission</span></button>
-                        <button class="errorpage"><span class="material-symbols-outlined">badge</span><span>Add
-                                Faculty</span></button>
-                        <button class="errorpage"><span class="material-symbols-outlined">summarize</span><span>Generate
-                                Report</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">payments</span><span>Pay
+                                Fees</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">calendar_month</span><span>View
+                                Timetable</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">badge</span><span>Download
+                                ID Card</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">support_agent</span><span>Raise
+                                Ticket</span></button>
                     </div>
                 </div>
 
                 <div class="bento">
-                    <!-- Enrollment trend bar chart - extra content -->
                     <div class="panel span-8">
                         <div class="panel-head">
-                            <h3>Enrollment Trend</h3>
-                            <span class="topbar-date">Last 6 Semesters</span>
+                            <h3>Attendance Trend</h3>
+                            <span class="topbar-date">Last 6 Months</span>
                         </div>
                         <div class="bar-chart">
                             <div class="bar-col">
-                                <div class="bar" style="height:55%;"></div><span>Spr 24</span>
+                                <div class="bar" style="height:70%;"></div><span>Mar</span>
                             </div>
                             <div class="bar-col">
-                                <div class="bar" style="height:64%;"></div><span>Fal 24</span>
+                                <div class="bar" style="height:82%;"></div><span>Apr</span>
                             </div>
                             <div class="bar-col">
-                                <div class="bar" style="height:60%;"></div><span>Spr 25</span>
+                                <div class="bar" style="height:65%;"></div><span>May</span>
                             </div>
                             <div class="bar-col">
-                                <div class="bar" style="height:78%;"></div><span>Fal 25</span>
+                                <div class="bar" style="height:88%;"></div><span>Jun</span>
                             </div>
                             <div class="bar-col">
-                                <div class="bar" style="height:84%;"></div><span>Spr 26</span>
+                                <div class="bar" style="height:76%;"></div><span>Jul</span>
                             </div>
                             <div class="bar-col">
-                                <div class="bar" style="height:100%;"></div><span>Fal 26</span>
+                                <div class="bar" style="height:91%;"></div><span>Aug</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Department distribution donut - extra content -->
                     <div class="panel span-4">
-                        <h3>Students By Department</h3>
+                        <h3>Grade Breakdown</h3>
                         <div class="donut-wrap">
                             <div class="donut"></div>
                             <div class="donut-legend">
                                 <div class="leg-item"><span class="dot"
-                                        style="background:var(--pcolor);"></span>Engineering (42%)</div>
+                                        style="background:var(--pcolor);"></span>A Grade (42%)</div>
                                 <div class="leg-item"><span class="dot"
-                                        style="background:var(--hcolor);"></span>Business (23%)</div>
-                                <div class="leg-item"><span class="dot" style="background:#e2b8c0;"></span>Arts & Design
+                                        style="background:var(--hcolor);"></span>B Grade (23%)</div>
+                                <div class="leg-item"><span class="dot" style="background:#e2b8c0;"></span>C Grade
                                     (19%)</div>
-                                <div class="leg-item"><span class="dot" style="background:var(--line);"></span>Applied
-                                    Science (16%)</div>
+                                <div class="leg-item"><span class="dot" style="background:var(--line);"></span>Others
+                                    (16%)</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Recent Admissions table -->
                     <div class="panel span-8">
                         <div class="panel-head">
-                            <h3>Recent Admissions Activity</h3>
+                            <h3>Recent Grades</h3>
                             <button class="d-btn errorpage">View All</button>
                         </div>
 
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Reference</th>
-                                    <th>Program Applied</th>
-                                    <th>Latest Update</th>
+                                    <th>Course</th>
+                                    <th>Assessment</th>
+                                    <th>Marks Obtained</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr>
-                                    <td class="cell-item">#ADM-2201</td>
-                                    <td>B.Tech Engineering</td>
-                                    <td>Documents Verified</td>
-                                    <td><span class="badge delivered">Approved</span></td>
+                                    <td class="cell-item">Data Structures</td>
+                                    <td>Mid-Term Exam</td>
+                                    <td>88 / 100</td>
+                                    <td><span class="badge delivered">Graded</span></td>
                                 </tr>
 
                                 <tr>
-                                    <td class="cell-item">#ADM-2198</td>
-                                    <td>BBA Business Studies</td>
-                                    <td>Interview Scheduled</td>
+                                    <td class="cell-item">Business Analytics</td>
+                                    <td>Assignment 3</td>
+                                    <td>Pending Review</td>
                                     <td><span class="badge transit">In Review</span></td>
                                 </tr>
 
                                 <tr>
-                                    <td class="cell-item">#ADM-2194</td>
-                                    <td>B.Des Arts & Design</td>
-                                    <td>Awaiting Documents</td>
+                                    <td class="cell-item">Design Studio</td>
+                                    <td>Portfolio Submission</td>
+                                    <td>Not Submitted</td>
                                     <td><span class="badge pending">Pending</span></td>
                                 </tr>
 
                                 <tr>
-                                    <td class="cell-item">#ADM-2189</td>
-                                    <td>B.Sc Applied Science</td>
-                                    <td>Offer Letter Sent</td>
-                                    <td><span class="badge delivered">Approved</span></td>
+                                    <td class="cell-item">Applied Physics</td>
+                                    <td>Lab Report 2</td>
+                                    <td>18 / 20</td>
+                                    <td><span class="badge delivered">Graded</span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <!-- Upcoming events - extra content -->
                     <div class="panel span-4">
-                        <h3>Upcoming Events</h3>
+                        <h3>Upcoming Deadlines</h3>
                         <div class="event-list">
                             <div class="event-item">
                                 <div class="event-date"><strong>03</strong><span>Sep</span></div>
                                 <div class="event-info">
-                                    <h5>Faculty Senate Meeting</h5>
-                                    <p>Main Hall, 10:00 AM</p>
+                                    <h5>Data Structures Assignment 4</h5>
+                                    <p>Submit Before 11:59 PM</p>
                                 </div>
                             </div>
                             <div class="event-item">
                                 <div class="event-date"><strong>09</strong><span>Sep</span></div>
                                 <div class="event-info">
-                                    <h5>Admissions Deadline - Round 2</h5>
-                                    <p>All Departments</p>
+                                    <h5>Fee Payment Due Date</h5>
+                                    <p>Semester 7 Tuition</p>
                                 </div>
                             </div>
                             <div class="event-item">
                                 <div class="event-date"><strong>15</strong><span>Sep</span></div>
                                 <div class="event-info">
-                                    <h5>Research Symposium</h5>
-                                    <p>Engineering Block, All Day</p>
+                                    <h5>Applied Physics Lab Exam</h5>
+                                    <p>Engineering Block, 10:00 AM</p>
                                 </div>
                             </div>
                             <div class="event-item">
                                 <div class="event-date"><strong>22</strong><span>Sep</span></div>
                                 <div class="event-info">
-                                    <h5>Parent-Teacher Meet</h5>
+                                    <h5>Business Analytics Presentation</h5>
                                     <p>Business School Wing</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Academic Health -->
                     <div class="panel span-6">
-                        <h3>Academic Health</h3>
+                        <h3>My Academic Summary</h3>
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Average Attendance Rate</td>
+                                    <td>Credits Completed</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">146 / 180</td>
+                                </tr>
+                                <tr>
+                                    <td>Courses This Semester</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">6</td>
+                                </tr>
+                                <tr>
+                                    <td>Overall Attendance</td>
                                     <td style="text-align:right;font-weight:800;color:var(--ink);">91.4%</td>
                                 </tr>
                                 <tr>
-                                    <td>Open Course Sections</td>
-                                    <td style="text-align:right;font-weight:800;color:var(--ink);">214</td>
-                                </tr>
-                                <tr>
-                                    <td>Faculty On Campus Today</td>
-                                    <td style="text-align:right;font-weight:800;color:var(--ink);">268 / 320</td>
-                                </tr>
-                                <tr>
-                                    <td>Grievances Pending Review</td>
+                                    <td>Pending Assignments</td>
                                     <td style="text-align:right;font-weight:800;color:var(--ink);">5</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <!-- Recent Activity timeline - extra content -->
                     <div class="panel span-6">
                         <h3>Recent Activity</h3>
                         <div class="timeline">
@@ -1547,32 +1526,32 @@
                                 <div class="t-dot"><span class="material-symbols-outlined"
                                         style="font-size:15px;">task_alt</span></div>
                                 <div class="t-body">
-                                    <h5>Admission #ADM-2201 approved</h5>
-                                    <p>Divya Krishnan · 10 minutes ago</p>
+                                    <h5>Assignment 3 submitted - Business Analytics</h5>
+                                    <p>10 minutes ago</p>
                                 </div>
                             </div>
                             <div class="t-item">
                                 <div class="t-dot"><span class="material-symbols-outlined"
-                                        style="font-size:15px;">person_add</span></div>
+                                        style="font-size:15px;">payments</span></div>
                                 <div class="t-body">
-                                    <h5>New faculty onboarded - Dr. Kavya Reddy</h5>
-                                    <p>HR Office · 2 hours ago</p>
+                                    <h5>Fee installment of ₹18,000 paid</h5>
+                                    <p>2 hours ago</p>
                                 </div>
                             </div>
                             <div class="t-item">
                                 <div class="t-dot"><span class="material-symbols-outlined"
-                                        style="font-size:15px;">event</span></div>
+                                        style="font-size:15px;">grade</span></div>
                                 <div class="t-body">
-                                    <h5>Research Symposium schedule finalised</h5>
-                                    <p>Events Desk · 5 hours ago</p>
+                                    <h5>Grade posted for Applied Physics Lab</h5>
+                                    <p>5 hours ago</p>
                                 </div>
                             </div>
                             <div class="t-item">
                                 <div class="t-dot"><span class="material-symbols-outlined"
-                                        style="font-size:15px;">report</span></div>
+                                        style="font-size:15px;">local_library</span></div>
                                 <div class="t-body">
-                                    <h5>Grievance ticket #GR-045 raised</h5>
-                                    <p>Student Affairs · Yesterday</p>
+                                    <h5>Library book "Design Patterns" returned</h5>
+                                    <p>Yesterday</p>
                                 </div>
                             </div>
                         </div>
@@ -1580,108 +1559,102 @@
                 </div>
             </div>
 
-            <!-- ========== 2. ADMISSIONS VIEW ========== -->
+            <!-- ========== 2. MY COURSES VIEW ========== -->
             <div class="view" id="orders">
                 <div class="stat-row">
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">assignment</span>
+                        <span class="material-symbols-outlined">menu_book</span>
                         <div class="stat-info">
-                            <h2>642</h2>
-                            <p>Open Applications</p>
+                            <h2>6</h2>
+                            <p>Enrolled Courses</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">move_to_inbox</span>
+                        <span class="material-symbols-outlined">workspace_premium</span>
                         <div class="stat-info">
-                            <h2>58</h2>
-                            <p>New This Week</p>
+                            <h2>18</h2>
+                            <p>Credits This Semester</p>
                         </div>
                     </div>
                     <div class="stat-card">
                         <span class="material-symbols-outlined">task_alt</span>
                         <div class="stat-info">
-                            <h2>3,410</h2>
-                            <p>Admitted This Year</p>
+                            <h2>146</h2>
+                            <p>Credits Completed</p>
                         </div>
                     </div>
                     <div class="stat-card">
                         <span class="material-symbols-outlined">priority_high</span>
                         <div class="stat-info">
-                            <h2>12</h2>
-                            <p>Flagged Applications</p>
+                            <h2>5</h2>
+                            <p>Pending Assignments</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="panel">
                     <div class="panel-head">
-                        <h3>Admission Applications</h3>
-                        <button class="d-btn errorpage">New Application</button>
+                        <h3>My Enrolled Courses</h3>
+                        <button class="d-btn errorpage">Course Registration</button>
                     </div>
 
                     <div class="filter-chips" style="margin-bottom:16px;">
                         <button class="active errorpage">All</button>
-                        <button class="errorpage">Approved</button>
-                        <button class="errorpage">In Review</button>
-                        <button class="errorpage">Pending</button>
+                        <button class="errorpage">Ongoing</button>
+                        <button class="errorpage">Completed</button>
+                        <button class="errorpage">Electives</button>
                     </div>
 
                     <table>
                         <thead>
                             <tr>
-                                <th>Reference</th>
-                                <th>Applicant</th>
-                                <th>Program</th>
-                                <th>Assigned Officer</th>
-                                <th>Date Applied</th>
+                                <th>Course Code</th>
+                                <th>Course Name</th>
+                                <th>Instructor</th>
+                                <th>Schedule</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr>
-                                <td>#ADM-2201</td>
-                                <td>Rahul Menon</td>
-                                <td>B.Tech Engineering</td>
-                                <td>Divya Krishnan</td>
-                                <td>Jul 08</td>
-                                <td><span class="badge delivered">Approved</span></td>
+                                <td>CS-301</td>
+                                <td>Data Structures</td>
+                                <td>Dr. Aravind Iyer</td>
+                                <td>Mon, Wed - 9:00 AM</td>
+                                <td><span class="badge delivered">Ongoing</span></td>
                             </tr>
 
                             <tr>
-                                <td>#ADM-2198</td>
-                                <td>Sneha Pillai</td>
-                                <td>BBA Business Studies</td>
-                                <td>Priya Suresh</td>
-                                <td>Jul 07</td>
-                                <td><span class="badge transit">In Review</span></td>
+                                <td>BA-204</td>
+                                <td>Business Analytics</td>
+                                <td>Dr. Meera Nair</td>
+                                <td>Tue, Thu - 11:00 AM</td>
+                                <td><span class="badge delivered">Ongoing</span></td>
                             </tr>
 
                             <tr>
-                                <td>#ADM-2194</td>
-                                <td>Arjun Nair</td>
-                                <td>B.Des Arts & Design</td>
-                                <td>Karthik Raja</td>
-                                <td>Jul 07</td>
-                                <td><span class="badge pending">Pending</span></td>
+                                <td>DS-112</td>
+                                <td>Design Studio</td>
+                                <td>Prof. Ravi Shankar</td>
+                                <td>Wed, Fri - 2:00 PM</td>
+                                <td><span class="badge transit">Ongoing</span></td>
                             </tr>
 
                             <tr>
-                                <td>#ADM-2189</td>
-                                <td>Meghana Rao</td>
-                                <td>B.Sc Applied Science</td>
-                                <td>Meera Nair</td>
-                                <td>Jul 06</td>
-                                <td><span class="badge delivered">Approved</span></td>
+                                <td>PH-208</td>
+                                <td>Applied Physics</td>
+                                <td>Prof. Daniel Cho</td>
+                                <td>Mon, Fri - 10:00 AM</td>
+                                <td><span class="badge delivered">Ongoing</span></td>
                             </tr>
 
                             <tr>
-                                <td>#ADM-2183</td>
-                                <td>Vikram Das</td>
-                                <td>B.Tech Engineering</td>
-                                <td>Karthik Raja</td>
-                                <td>Jul 05</td>
-                                <td><span class="badge transit">In Review</span></td>
+                                <td>EN-101</td>
+                                <td>Technical Communication</td>
+                                <td>Dr. Kavya Reddy</td>
+                                <td>Completed - Spring 26</td>
+                                <td><span class="badge maintenance">Completed</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -1696,35 +1669,35 @@
                 </div>
             </div>
 
-            <!-- ========== 3. FACULTY VIEW ========== -->
+            <!-- ========== 3. MY INSTRUCTORS VIEW ========== -->
             <div class="view" id="staff">
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">badge</span>
                         <div class="stat-info">
-                            <h2>320</h2>
-                            <p>Total Faculty</p>
+                            <h2>6</h2>
+                            <p>Total Instructors</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">school</span>
+                        <span class="material-symbols-outlined">event_available</span>
                         <div class="stat-info">
-                            <h2>184</h2>
-                            <p>Professors</p>
+                            <h2>4</h2>
+                            <p>Available Today</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">science</span>
+                        <span class="material-symbols-outlined">schedule</span>
                         <div class="stat-info">
-                            <h2>96</h2>
-                            <p>Research Faculty</p>
+                            <h2>3</h2>
+                            <p>Office Hours Today</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">event_busy</span>
+                        <span class="material-symbols-outlined">mail</span>
                         <div class="stat-info">
-                            <h2>7</h2>
-                            <p>On Leave</p>
+                            <h2>2</h2>
+                            <p>Unread Messages</p>
                         </div>
                     </div>
                 </div>
@@ -1732,12 +1705,12 @@
                 <div class="bento">
                     <div class="panel span-8">
                         <div class="panel-head">
-                            <h3>Faculty Roster</h3>
+                            <h3>My Instructors</h3>
                             <div class="filter-chips">
                                 <button class="active errorpage">All</button>
-                                <button class="errorpage">Engineering</button>
-                                <button class="errorpage">Business</button>
-                                <button class="errorpage">Arts</button>
+                                <button class="errorpage">Core</button>
+                                <button class="errorpage">Electives</button>
+                                <button class="errorpage">Labs</button>
                             </div>
                         </div>
                         <div class="fleet-grid">
@@ -1746,8 +1719,8 @@
                                     alt="Dr. Aravind Iyer">
                                 <div class="fleet-card-body">
                                     <h4>Dr. Aravind Iyer</h4>
-                                    <p>Dean, Engineering · 6 Courses</p>
-                                    <span class="badge active">On Campus</span>
+                                    <p>Data Structures · CS-301</p>
+                                    <span class="badge active">Available</span>
                                 </div>
                                 <div class="contact-row">
                                     <span class="material-symbols-outlined errorpage">mail</span>
@@ -1759,8 +1732,8 @@
                                     alt="Dr. Meera Nair">
                                 <div class="fleet-card-body">
                                     <h4>Dr. Meera Nair</h4>
-                                    <p>Head, Business School · 5 Courses</p>
-                                    <span class="badge active">On Campus</span>
+                                    <p>Business Analytics · BA-204</p>
+                                    <span class="badge active">Available</span>
                                 </div>
                                 <div class="contact-row">
                                     <span class="material-symbols-outlined errorpage">mail</span>
@@ -1772,7 +1745,7 @@
                                     alt="Prof. Ravi Shankar">
                                 <div class="fleet-card-body">
                                     <h4>Prof. Ravi Shankar</h4>
-                                    <p>Head, Arts & Design · 4 Courses</p>
+                                    <p>Design Studio · DS-112</p>
                                     <span class="badge maintenance">On Leave</span>
                                 </div>
                                 <div class="contact-row">
@@ -1785,8 +1758,8 @@
                                     alt="Prof. Daniel Cho">
                                 <div class="fleet-card-body">
                                     <h4>Prof. Daniel Cho</h4>
-                                    <p>Dean Of Academics · 4 Courses</p>
-                                    <span class="badge active">On Campus</span>
+                                    <p>Applied Physics · PH-208</p>
+                                    <span class="badge active">Available</span>
                                 </div>
                                 <div class="contact-row">
                                     <span class="material-symbols-outlined errorpage">mail</span>
@@ -1796,35 +1769,34 @@
                         </div>
                     </div>
 
-                    <!-- Faculty availability today - extra content -->
                     <div class="panel span-4">
-                        <h3>On Leave Today</h3>
+                        <h3>Office Hours Today</h3>
                         <div class="event-list">
                             <div class="event-item">
                                 <div class="event-date" style="background:var(--pcolor);">
-                                    <strong>29</strong><span>Aug</span>
+                                    <strong>2</strong><span>PM</span>
                                 </div>
                                 <div class="event-info">
-                                    <h5>Prof. Ravi Shankar</h5>
-                                    <p>Arts & Design · Back Sep 02</p>
+                                    <h5>Dr. Aravind Iyer</h5>
+                                    <p>Room 214, Engineering Block</p>
                                 </div>
                             </div>
                             <div class="event-item">
                                 <div class="event-date" style="background:var(--pcolor);">
-                                    <strong>29</strong><span>Aug</span>
+                                    <strong>3</strong><span>PM</span>
                                 </div>
                                 <div class="event-info">
-                                    <h5>Dr. Sameer Qureshi</h5>
-                                    <p>Applied Science · Back Sep 01</p>
+                                    <h5>Dr. Meera Nair</h5>
+                                    <p>Room 108, Business School</p>
                                 </div>
                             </div>
                             <div class="event-item">
                                 <div class="event-date" style="background:var(--pcolor);">
-                                    <strong>30</strong><span>Aug</span>
+                                    <strong>4</strong><span>PM</span>
                                 </div>
                                 <div class="event-info">
-                                    <h5>Dr. Fatima Sheikh</h5>
-                                    <p>Engineering · Back Sep 03</p>
+                                    <h5>Prof. Daniel Cho</h5>
+                                    <p>Room 305, Science Wing</p>
                                 </div>
                             </div>
                         </div>
@@ -1832,61 +1804,61 @@
                 </div>
             </div>
 
-            <!-- ========== 4. DEPARTMENTS VIEW ========== -->
+            <!-- ========== 4. CAMPUS SERVICES VIEW ========== -->
             <div class="view" id="branches">
                 <div class="stat-row">
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">apartment</span>
+                        <span class="material-symbols-outlined">local_library</span>
                         <div class="stat-info">
-                            <h2>4</h2>
-                            <p>Academic Departments</p>
+                            <h2>3</h2>
+                            <p>Library Books Issued</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">school</span>
+                        <span class="material-symbols-outlined">bed</span>
                         <div class="stat-info">
-                            <h2>85</h2>
-                            <p>Programs Offered</p>
+                            <h2>B-204</h2>
+                            <p>Hostel Room</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">library_books</span>
+                        <span class="material-symbols-outlined">restaurant</span>
                         <div class="stat-info">
-                            <h2>412</h2>
-                            <p>Active Course Sections</p>
+                            <h2>₹1,850</h2>
+                            <p>Meal Plan Balance</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">science</span>
+                        <span class="material-symbols-outlined">groups_2</span>
                         <div class="stat-info">
-                            <h2>18</h2>
-                            <p>Research Labs</p>
+                            <h2>2</h2>
+                            <p>Club Memberships</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="panel">
-                    <h3>Departments</h3>
+                    <h3>Campus Facilities</h3>
                     <div class="wh-grid">
                         <div class="wh-card">
                             <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80"
-                                alt="Engineering department">
+                                alt="University library">
                             <div class="overlay">
-                                <h4>School of Engineering</h4><span>3,240 Students Enrolled</span>
+                                <h4>Central Library</h4><span>Open Until 10:00 PM</span>
                             </div>
                         </div>
                         <div class="wh-card">
                             <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80"
-                                alt="Business department">
+                                alt="Hostel building">
                             <div class="overlay">
-                                <h4>School of Business</h4><span>2,860 Students Enrolled</span>
+                                <h4>Hostel Block B</h4><span>Room B-204</span>
                             </div>
                         </div>
                         <div class="wh-card">
                             <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=500&q=80"
-                                alt="Arts and design department">
+                                alt="Sports complex">
                             <div class="overlay">
-                                <h4>School of Arts & Design</h4><span>1,940 Students Enrolled</span>
+                                <h4>Sports Complex</h4><span>Gym & Courts Access</span>
                             </div>
                         </div>
                     </div>
@@ -1894,63 +1866,62 @@
 
                 <div class="bento">
                     <div class="panel span-8">
-                        <h3>Department Snapshot</h3>
+                        <h3>My Facility Access</h3>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Department</th>
-                                    <th>Focus Area</th>
-                                    <th>Active Faculty</th>
+                                    <th>Facility</th>
+                                    <th>Access Type</th>
+                                    <th>Details</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>School of Engineering</td>
-                                    <td>Technology &amp; Applied Research</td>
-                                    <td>112</td>
-                                    <td><span class="badge active">Fully Staffed</span></td>
+                                    <td>Central Library</td>
+                                    <td>Book Lending</td>
+                                    <td>3 books issued</td>
+                                    <td><span class="badge active">Active</span></td>
                                 </tr>
                                 <tr>
-                                    <td>School of Business</td>
-                                    <td>Management &amp; Finance</td>
-                                    <td>84</td>
-                                    <td><span class="badge active">Fully Staffed</span></td>
+                                    <td>Hostel Block B</td>
+                                    <td>Room Allocation</td>
+                                    <td>Room B-204, Shared</td>
+                                    <td><span class="badge active">Active</span></td>
                                 </tr>
                                 <tr>
-                                    <td>School of Arts & Design</td>
-                                    <td>Creative &amp; Visual Studies</td>
-                                    <td>58</td>
-                                    <td><span class="badge maintenance">Hiring Open</span></td>
+                                    <td>Sports Complex</td>
+                                    <td>Gym & Courts</td>
+                                    <td>Membership renewal due</td>
+                                    <td><span class="badge maintenance">Renew Soon</span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <!-- Department budget usage - extra content -->
                     <div class="panel span-4">
-                        <h3>Annual Budget Usage</h3>
+                        <h3>Facility Usage This Month</h3>
                         <div class="budget-row">
                             <div class="budget-item">
-                                <h5>Engineering <span>78%</span></h5>
+                                <h5>Library Hours Used <span>78%</span></h5>
                                 <div class="budget-track">
                                     <div class="budget-fill" style="width:78%;"></div>
                                 </div>
                             </div>
                             <div class="budget-item">
-                                <h5>Business <span>64%</span></h5>
+                                <h5>Gym Sessions <span>64%</span></h5>
                                 <div class="budget-track">
                                     <div class="budget-fill" style="width:64%;"></div>
                                 </div>
                             </div>
                             <div class="budget-item">
-                                <h5>Arts & Design <span>52%</span></h5>
+                                <h5>Lab Hours <span>52%</span></h5>
                                 <div class="budget-track">
                                     <div class="budget-fill" style="width:52%;"></div>
                                 </div>
                             </div>
                             <div class="budget-item">
-                                <h5>Applied Science <span>45%</span></h5>
+                                <h5>Meal Plan Balance <span>45%</span></h5>
                                 <div class="budget-track">
                                     <div class="budget-fill" style="width:45%;"></div>
                                 </div>
@@ -1960,35 +1931,35 @@
                 </div>
             </div>
 
-            <!-- ========== 5. STUDENTS VIEW ========== -->
+            <!-- ========== 5. FEES & PAYMENTS VIEW ========== -->
             <div class="view" id="clients">
                 <div class="stat-row">
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">groups</span>
+                        <span class="material-symbols-outlined">account_balance</span>
                         <div class="stat-info">
-                            <h2>12,485</h2>
-                            <p>Total Students</p>
+                            <h2>₹1,20,000</h2>
+                            <p>Total Annual Fee</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">person_add</span>
+                        <span class="material-symbols-outlined">task_alt</span>
                         <div class="stat-info">
-                            <h2>648</h2>
-                            <p>New This Semester</p>
+                            <h2>₹78,000</h2>
+                            <p>Amount Paid</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">workspace_premium</span>
+                        <span class="material-symbols-outlined">payments</span>
                         <div class="stat-info">
-                            <h2>1,120</h2>
-                            <p>Scholarship Holders</p>
+                            <h2>₹42,000</h2>
+                            <p>Amount Due</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <span class="material-symbols-outlined">support_agent</span>
+                        <span class="material-symbols-outlined">event</span>
                         <div class="stat-info">
-                            <h2>21</h2>
-                            <p>Open Support Tickets</p>
+                            <h2>Sep 15</h2>
+                            <p>Next Due Date</p>
                         </div>
                     </div>
                 </div>
@@ -1996,50 +1967,55 @@
                 <div class="bento">
                     <div class="panel span-8">
                         <div class="panel-head">
-                            <h3>Student Directory</h3>
-                            <button class="d-btn errorpage">Add Student</button>
+                            <h3>Fee Payment History</h3>
+                            <button class="d-btn errorpage">Pay Now</button>
                         </div>
 
                         <div class="filter-chips" style="margin-bottom:16px;">
                             <button class="active errorpage">All</button>
-                            <button class="errorpage">Scholarship</button>
-                            <button class="errorpage">New Admits</button>
-                            <button class="errorpage">Final Year</button>
+                            <button class="errorpage">Paid</button>
+                            <button class="errorpage">Due</button>
+                            <button class="errorpage">Overdue</button>
                         </div>
 
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Student</th>
-                                    <th>Email</th>
-                                    <th>Program</th>
-                                    <th>Year</th>
+                                    <th>Invoice</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="cell-item">Priya Sharma</td>
-                                    <td>priya.s@stackly.edu</td>
-                                    <td>B.Tech Engineering</td>
-                                    <td>Final Year</td>
+                                    <td class="cell-item">#INV-2201</td>
+                                    <td>Semester 6 Tuition</td>
+                                    <td>₹60,000</td>
+                                    <td>Jan 10</td>
+                                    <td><span class="badge delivered">Paid</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="cell-item">Karthik Raj</td>
-                                    <td>karthik.r@stackly.edu</td>
-                                    <td>BBA Business Studies</td>
-                                    <td>Graduate</td>
+                                    <td class="cell-item">#INV-2214</td>
+                                    <td>Hostel Fee - Semester 6</td>
+                                    <td>₹18,000</td>
+                                    <td>Jan 15</td>
+                                    <td><span class="badge delivered">Paid</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="cell-item">Ananya Das</td>
-                                    <td>ananya.d@stackly.edu</td>
-                                    <td>B.Des Arts & Design</td>
-                                    <td>Second Year</td>
+                                    <td class="cell-item">#INV-2298</td>
+                                    <td>Semester 7 Tuition</td>
+                                    <td>₹42,000</td>
+                                    <td>Due Sep 15</td>
+                                    <td><span class="badge pending">Due</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="cell-item">Vikram Iyer</td>
-                                    <td>vikram.i@stackly.edu</td>
-                                    <td>B.Sc Applied Science</td>
-                                    <td>Third Year</td>
+                                    <td class="cell-item">#INV-2305</td>
+                                    <td>Lab & Equipment Fee</td>
+                                    <td>₹5,000</td>
+                                    <td>Due Sep 15</td>
+                                    <td><span class="badge pending">Due</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2053,43 +2029,42 @@
                         </div>
                     </div>
 
-                    <!-- Support tickets - extra content -->
                     <div class="panel span-4">
-                        <h3>Open Support Tickets</h3>
+                        <h3>My Support Tickets</h3>
                         <div class="student-list">
                             <div class="student-row">
                                 <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80"
-                                    alt="Student">
+                                    alt="Support ticket">
                                 <div class="s-info">
                                     <h5>Fee Payment Issue</h5>
-                                    <p>Priya Sharma · #TCK-1042</p>
+                                    <p>#TCK-1042 · Raised Aug 20</p>
                                 </div>
                                 <span class="badge pending">Open</span>
                             </div>
                             <div class="student-row">
                                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
-                                    alt="Student">
+                                    alt="Support ticket">
                                 <div class="s-info">
-                                    <h5>Hostel Room Change</h5>
-                                    <p>Karthik Raj · #TCK-1039</p>
+                                    <h5>Hostel Room Change Request</h5>
+                                    <p>#TCK-1039 · Raised Aug 18</p>
                                 </div>
                                 <span class="badge transit">In Progress</span>
                             </div>
                             <div class="student-row">
                                 <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=100&q=80"
-                                    alt="Student">
+                                    alt="Support ticket">
                                 <div class="s-info">
-                                    <h5>Scholarship Query</h5>
-                                    <p>Ananya Das · #TCK-1035</p>
+                                    <h5>Scholarship Renewal Query</h5>
+                                    <p>#TCK-1035 · Raised Aug 12</p>
                                 </div>
                                 <span class="badge pending">Open</span>
                             </div>
                             <div class="student-row">
                                 <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=100&q=80"
-                                    alt="Student">
+                                    alt="Support ticket">
                                 <div class="s-info">
                                     <h5>Course Registration Help</h5>
-                                    <p>Vikram Iyer · #TCK-1031</p>
+                                    <p>#TCK-1031 · Raised Aug 05</p>
                                 </div>
                                 <span class="badge delivered">Resolved</span>
                             </div>
@@ -2143,19 +2118,19 @@
 
         const titles = {
             overview: "Overview",
-            orders: "Admissions",
-            staff: "Faculty",
-            branches: "Departments",
-            clients: "Students"
+            orders: "My Courses",
+            staff: "My Instructors",
+            branches: "Campus Services",
+            clients: "Fees & Payments"
         };
 
         function showView(id, btn) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById(id).classList.add('active');
 
-              window.scrollTo({
-                top:"0px",
-                behavior:"smooth"
+            window.scrollTo({
+                top: "0px",
+                behavior: "smooth"
             })
 
             document.querySelectorAll('.side-nav button').forEach(b => b.classList.remove('active'));
