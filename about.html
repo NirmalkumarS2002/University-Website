@@ -19,33 +19,35 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-<link rel="stylesheet" href="style.css">
-<style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style.css">
+    <style>
         :root {
             --pcolor: #730017;
             --dark: #080808;
         }
 
-      section {
+        section {
             padding: 120px;
             box-sizing: border-box;
             font-family: "Nunito Sans", sans-serif;
         }
 
-          section {
+        section {
             overflow-x: hidden;
             color: var(--dark);
         }
 
-         .container {
+        .container {
             max-width: 1300px;
             margin: 0 auto;
             padding-inline: 20px;
         }
 
-           section .eyebrow {
+        section .eyebrow {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -57,7 +59,7 @@
             margin-bottom: 14px;
         }
 
-          section.eyebrow::before {
+        section.eyebrow::before {
             content: "";
             width: 30px;
             height: 3px;
@@ -65,7 +67,7 @@
             display: inline-block;
         }
 
-           section h2 {
+        section h2 {
             font-family: "Acme", sans-serif;
             font-size: 44px;
             line-height: 1.1;
@@ -74,7 +76,7 @@
             margin-bottom: 18px;
         }
 
-          section .btn-primary {
+        section .btn-primary {
             width: fit-content;
             display: flex;
             align-items: center;
@@ -93,13 +95,13 @@
             cursor: pointer;
         }
 
-          section .btn-primary span {
+        section .btn-primary span {
             transform: rotate(-50deg);
             transition: .5s ease;
             font-size: 20px;
         }
 
-          section .btn-primary::before {
+        section .btn-primary::before {
             content: "";
             height: 100%;
             width: 0%;
@@ -111,11 +113,11 @@
             z-index: -1;
         }
 
-         section .btn-primary:hover::before {
+        section .btn-primary:hover::before {
             width: 100%;
         }
 
-          section .btn-primary:hover span {
+        section .btn-primary:hover span {
             transform: rotate(0deg);
         }
 
@@ -123,6 +125,7 @@
         .abt-banner {
             position: relative;
             min-height: 50vh;
+            padding: 80px 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -177,10 +180,11 @@
 
         /* ---------- 2. OUR STORY ---------- */
         .abt-story {
-            padding: 100px 0;
+            padding: 100px 40px;
             display: grid;
             grid-template-columns: 0.9fr 1.1fr;
             gap: 60px;
+
             align-items: center;
         }
 
@@ -310,6 +314,12 @@
             color: #5a5a5a;
         }
 
+        @media (max-width:600px) {
+            .abt-story {
+                padding: 100px 15px;
+            }
+        }
+
         /* ---------- 4. STATS / ACHIEVEMENTS ---------- */
         .abt-stats {
             position: relative;
@@ -364,6 +374,17 @@
             color: #d9d9d9;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        @media(max-width:600px) {
+
+            .abt-stats-grid .stat strong {
+                font-size: 34px;
+            }
+
+            .abt-stats-grid .stat span {
+                font-size: 12px;
+            }
         }
 
         /* ---------- 5. LEADERSHIP TEAM ---------- */
@@ -564,7 +585,7 @@
 
 
 
-         <header class="header">
+    <header class="header">
 
         <div class="navbar">
 
@@ -572,7 +593,7 @@
 
             <ul class="menus">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html"  class="active">About</a></li>
+                <li><a href="about.html" class="active">About</a></li>
                 <li><a href="blog.html">Blogs</a></li>
                 <li><a href="service.html">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -606,7 +627,8 @@
                 academic institutions.</p>
             <div class="sideimgwrap">
                 <img src="./src/sideimg.webp" alt="side image">
-                <button class="sidebtn errorpage">Apply Now<span class="material-symbols-outlined">arrow_right_alt</span></button>
+                <button class="sidebtn errorpage">Apply Now<span
+                        class="material-symbols-outlined">arrow_right_alt</span></button>
             </div>
 
             <div class="sidebar-details">
@@ -629,184 +651,177 @@
 
     </header>
 
-        <!-- 1. PAGE BANNER -->
-        <section class="abt-banner">
-            <div class="abt-banner-content">
-                <p class="eyebrow">Get To Know Us</p>
-                <h1>About Us</h1>
-                <p class="crumb">Home <span>/</span> About</p>
+    <!-- 1. PAGE BANNER -->
+    <section class="abt-banner">
+        <div class="abt-banner-content">
+            <p class="eyebrow">Get To Know Us</p>
+            <h1>About Us</h1>
+            <p class="crumb">Home <span>/</span> About</p>
+        </div>
+    </section>
+
+    <!-- 2. OUR STORY -->
+    <section class="abt-story container">
+        <div class="imgbox">
+            <div class="badge">
+                <strong>25+</strong>
+                <span>Years Strong</span>
             </div>
-        </section>
-
-        <!-- 2. OUR STORY -->
-        <section class="abt-story container">
-            <div class="imgbox">
-                <div class="badge">
-                    <strong>25+</strong>
-                    <span>Years Strong</span>
-                </div>
-                <img src="./src/image_33.webp"
-                    alt="Historic university building">
-                <img class="img2"
-                    src="./src/image_34.webp"
-                    alt="Students walking on campus">
-            </div>
-            <div class="content">
-                <p class="eyebrow">Our Story</p>
-                <h2>Founded On A Simple Idea</h2>
-                <p>University of Stackly began with one belief, that quality education should be shaped around real
-                    students, not the other way around. What started as a single faculty building in Melbourne has grown
-                    into a full campus serving thousands of learners from over 60 countries.</p>
-                <p>Today, we combine research-driven teaching with hands-on industry exposure, so every graduate leaves
-                    with both knowledge and the confidence to use it.</p>
-                <a href="404.html" class="btn-primary">Get In Touch<span
-                        class="material-symbols-outlined">arrow_right_alt</span></a>
-            </div>
-        </section>
-
-        <!-- 3. MISSION & VISION -->
-        <section class="abt-mv-section">
-            <div class="container">
-                <div class="abt-mv-head">
-                    <p class="eyebrow">What Drives Us</p>
-                    <h2>Our Mission, Vision & Values</h2>
-                </div>
-
-                <div class="abt-mv-grid">
-                    <div class="abt-mv-card">
-                        <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
-                        <h3>Our Mission</h3>
-                        <p>To deliver accessible, high-quality education that equips students with practical skills and
-                            critical thinking for a changing world.</p>
-                    </div>
-
-                    <div class="abt-mv-card">
-                        <div class="icon"><i class="fa-solid fa-eye"></i></div>
-                        <h3>Our Vision</h3>
-                        <p>To be recognised as a leading global university known for innovation, research impact, and
-                            graduate success.</p>
-                    </div>
-
-                    <div class="abt-mv-card">
-                        <div class="icon"><i class="fa-solid fa-handshake"></i></div>
-                        <h3>Our Values</h3>
-                        <p>Integrity, inclusivity, and curiosity guide every decision, from the classroom to the campus
-                            community.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. STATS -->
-        <section class="abt-stats">
-            <div class="abt-stats-content container">
-                <p class="eyebrow">By The Numbers</p>
-                <h2>Achievements That Speak For Themselves</h2>
-
-                <div class="abt-stats-grid">
-                    <div class="stat">
-                        <strong>12,000+</strong>
-                        <span>Students Enrolled</span>
-                    </div>
-                    <div class="stat">
-                        <strong>450+</strong>
-                        <span>Faculty Members</span>
-                    </div>
-                    <div class="stat">
-                        <strong>60+</strong>
-                        <span>Countries Represented</span>
-                    </div>
-                    <div class="stat">
-                        <strong>98%</strong>
-                        <span>Graduate Employment</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. LEADERSHIP TEAM -->
-        <section class="abt-team">
-            <div class="container">
-                <div class="abt-team-head">
-                    <p class="eyebrow">Meet The Team</p>
-                    <h2>Leadership Behind Stackly</h2>
-                </div>
-
-                <div class="abt-team-grid">
-                    <div class="abt-team-card">
-                        <div class="imgbox">
-                            <img src="./src/image_15.webp"
-                                alt="University Vice Chancellor portrait">
-                        </div>
-                        <div class="info">
-                            <h4>Dr. Amara Feld</h4>
-                            <p>Vice Chancellor</p>
-                            <div class="socials">
-                                <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="abt-team-card">
-                        <div class="imgbox">
-                            <img src="./src/image_26.webp"
-                                alt="Dean of Academics portrait">
-                        </div>
-                        <div class="info">
-                            <h4>Prof. Daniel Cho</h4>
-                            <p>Dean Of Academics</p>
-                            <div class="socials">
-                                <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="abt-team-card">
-                        <div class="imgbox">
-                            <img src="./src/image_27.webp"
-                                alt="Head of Research portrait">
-                        </div>
-                        <div class="info">
-                            <h4>Dr. Priya Nair</h4>
-                            <p>Head Of Research</p>
-                            <div class="socials">
-                                <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="abt-team-card">
-                        <div class="imgbox">
-                            <img src="./src/image_28.webp"
-                                alt="Director of Student Affairs portrait">
-                        </div>
-                        <div class="info">
-                            <h4>Mark Whitfield</h4>
-                            <p>Student Affairs Director</p>
-                            <div class="socials">
-                                <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. CTA -->
-        <section class="abt-cta">
-            <div class="content">
-                <h2>Want To Know More About Us?</h2>
-                <p>Schedule a campus tour or speak directly with our admissions counsellors.</p>
-            </div>
-            <a href="404.html" class="btn-primary">Contact Us<span
+            <img src="./src/image_33.webp" alt="Historic university building">
+            <img class="img2" src="./src/image_34.webp" alt="Students walking on campus">
+        </div>
+        <div class="content">
+            <p class="eyebrow">Our Story</p>
+            <h2>Founded On A Simple Idea</h2>
+            <p>University of Stackly began with one belief, that quality education should be shaped around real
+                students, not the other way around. What started as a single faculty building in Melbourne has grown
+                into a full campus serving thousands of learners from over 60 countries.</p>
+            <p>Today, we combine research-driven teaching with hands-on industry exposure, so every graduate leaves
+                with both knowledge and the confidence to use it.</p>
+            <a href="404.html" class="btn-primary">Get In Touch<span
                     class="material-symbols-outlined">arrow_right_alt</span></a>
-        </section>
+        </div>
+    </section>
 
-            <footer class="footer">
+    <!-- 3. MISSION & VISION -->
+    <section class="abt-mv-section">
+        <div class="container">
+            <div class="abt-mv-head">
+                <p class="eyebrow">What Drives Us</p>
+                <h2>Our Mission, Vision & Values</h2>
+            </div>
+
+            <div class="abt-mv-grid">
+                <div class="abt-mv-card">
+                    <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Our Mission</h3>
+                    <p>To deliver accessible, high-quality education that equips students with practical skills and
+                        critical thinking for a changing world.</p>
+                </div>
+
+                <div class="abt-mv-card">
+                    <div class="icon"><i class="fa-solid fa-eye"></i></div>
+                    <h3>Our Vision</h3>
+                    <p>To be recognised as a leading global university known for innovation, research impact, and
+                        graduate success.</p>
+                </div>
+
+                <div class="abt-mv-card">
+                    <div class="icon"><i class="fa-solid fa-handshake"></i></div>
+                    <h3>Our Values</h3>
+                    <p>Integrity, inclusivity, and curiosity guide every decision, from the classroom to the campus
+                        community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. STATS -->
+    <section class="abt-stats">
+        <div class="abt-stats-content container">
+            <p class="eyebrow">By The Numbers</p>
+            <h2>Achievements That Speak For Themselves</h2>
+
+            <div class="abt-stats-grid">
+                <div class="stat">
+                    <strong>12,000+</strong>
+                    <span>Students Enrolled</span>
+                </div>
+                <div class="stat">
+                    <strong>450+</strong>
+                    <span>Faculty Members</span>
+                </div>
+                <div class="stat">
+                    <strong>60+</strong>
+                    <span>Countries Represented</span>
+                </div>
+                <div class="stat">
+                    <strong>98%</strong>
+                    <span>Graduate Employment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. LEADERSHIP TEAM -->
+    <section class="abt-team">
+        <div class="container">
+            <div class="abt-team-head">
+                <p class="eyebrow">Meet The Team</p>
+                <h2>Leadership Behind Stackly</h2>
+            </div>
+
+            <div class="abt-team-grid">
+                <div class="abt-team-card">
+                    <div class="imgbox">
+                        <img src="./src/image_15.webp" alt="University Vice Chancellor portrait">
+                    </div>
+                    <div class="info">
+                        <h4>Dr. Amara Feld</h4>
+                        <p>Vice Chancellor</p>
+                        <div class="socials">
+                            <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="abt-team-card">
+                    <div class="imgbox">
+                        <img src="./src/image_26.webp" alt="Dean of Academics portrait">
+                    </div>
+                    <div class="info">
+                        <h4>Prof. Daniel Cho</h4>
+                        <p>Dean Of Academics</p>
+                        <div class="socials">
+                            <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="abt-team-card">
+                    <div class="imgbox">
+                        <img src="./src/image_27.webp" alt="Head of Research portrait">
+                    </div>
+                    <div class="info">
+                        <h4>Dr. Priya Nair</h4>
+                        <p>Head Of Research</p>
+                        <div class="socials">
+                            <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="abt-team-card">
+                    <div class="imgbox">
+                        <img src="./src/image_28.webp" alt="Director of Student Affairs portrait">
+                    </div>
+                    <div class="info">
+                        <h4>Mark Whitfield</h4>
+                        <p>Student Affairs Director</p>
+                        <div class="socials">
+                            <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CTA -->
+    <section class="abt-cta">
+        <div class="content">
+            <h2>Want To Know More About Us?</h2>
+            <p>Schedule a campus tour or speak directly with our admissions counsellors.</p>
+        </div>
+        <a href="404.html" class="btn-primary">Contact Us<span
+                class="material-symbols-outlined">arrow_right_alt</span></a>
+    </section>
+
+    <footer class="footer">
 
         <div class="footer1">
             <div class="foot1">
