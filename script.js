@@ -81,3 +81,23 @@ subBtn.addEventListener("click", (e) => {
     }, 3000);
 
 });
+
+
+
+// reveal animation 
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("showed");
+        }
+    })
+}, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.2
+})
+
+document.querySelectorAll(".reveal, .reveal-right, .reveal-left").forEach((el) => {
+    observer.observe(el)
+})
