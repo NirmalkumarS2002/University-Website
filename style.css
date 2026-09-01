@@ -529,6 +529,11 @@ body {
     color: var(--pcolor);
 }
 
+.foot-error{
+    color: red;
+    font-size: 12px !important;
+}
+
 
 
 @media (max-width:950px) {
@@ -547,3 +552,49 @@ body {
         gap: 15px;
     }
 }
+
+
+/* common btn */
+
+  .herobtn {
+            width: fit-content;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--pcolor);
+            border: none;
+            color: white;
+            border-radius: 7px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 15px;
+        }
+
+        .herobtn span {
+            transform: rotate(-50deg);
+            transition: .5s ease;
+            font-size: 22px;
+        }
+
+        .herobtn::before {
+            content: "";
+            height: 100%;
+            width: 0%;
+            background: black;
+            transition: width .5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .herobtn:hover::before {
+            width: 100%;
+        }
+
+        .herobtn:hover span {
+            transform: rotate(0deg);
+        }

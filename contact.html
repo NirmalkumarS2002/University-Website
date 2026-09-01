@@ -117,6 +117,7 @@
     .cnt-banner {
         position: relative;
         min-height: 50vh;
+        padding: 80px 20px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -436,9 +437,13 @@
     /* ---------- 6. CTA ---------- */
     .cnt-cta {
         position: relative;
-        padding: 110px 0;
+        padding: 110px 20px;
         text-align: center;
         background: url("./src/4.webp") center/cover no-repeat fixed;
+    }
+
+    .cnt-cta .eyebrow::before{
+        background: #ffffff;
     }
 
     .cnt-cta::before {
@@ -525,6 +530,12 @@
         h2 {
             font-size: 30px !important;
         }
+    }
+
+    .contact-error{
+        font-size: 13px;
+        margin-top: 10px;
+        color: red;
     }
 </style>
 </head>
@@ -664,17 +675,31 @@
 
             <form class="cnt-form">
                 <div class="row2">
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email Address" required>
+                    <div><input type="text" placeholder="Full Name" id="conname">
+                    <p class="contact-error"></p></div>
+
+                   <div> 
+                    <input type="email" placeholder="Email Address" id="conemail">
+                    <p class="contact-error"></p>
+                </div>
                 </div>
                 <div class="row2">
-                    <input type="tel" placeholder="Phone Number">
-                    <input type="text" placeholder="Subject">
+                        <div>
+                            <input type="tel" placeholder="Phone Number" id="conphone">
+                            <p class="contact-error"></p>
+                        </div>
+                        <div> <input type="text" placeholder="Subject" id="consubject">
+                                <p class="contact-error"></p>
+                                </div>
                 </div>
-                <textarea placeholder="Your Message"></textarea>
+                    <div>
+                        <textarea placeholder="Your Message" id="conmessage"></textarea>
+                        <p class="contact-error"></p>
+                    </div>
                 <button type="submit" class="btn-primary">Send Message<span
                         class="material-symbols-outlined">arrow_right_alt</span></button>
-            </form>
+           <p class="contact-error"></p>
+                    </form>
         </div>
     </section>
 
@@ -839,6 +864,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="contact.js"></script>
 
 
 </body>
