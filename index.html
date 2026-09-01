@@ -339,7 +339,7 @@
             margin-top: 25px;
         }
 
-        .about-points div {
+        .about-points>div {
             display: flex;
             align-items: flex-start;
             gap: 15px;
@@ -622,9 +622,13 @@
             margin: 0 auto 50px auto;
         }
 
-        .gallery-head .sec-eyebrow,
+        
         .gallery-head .sec-desc {
             margin-inline: auto;
+        }
+
+        .gallery-head .sec-eyebrow{
+            justify-self: center;
         }
 
         .gallery-head .sec-eyebrow::before {
@@ -828,6 +832,9 @@
             border-radius: 12px;
             padding: 35px 30px;
             color: white;
+
+            display: flex;
+            flex-direction: column;
         }
 
         .testi-card .material-symbols-outlined {
@@ -840,6 +847,7 @@
             line-height: 1.7;
             color: #d8d8d8;
             margin-block: 20px;
+            flex: 1;
         }
 
         .testi-person {

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <title>University - Page Not Found</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --pcolor: #730017;
+            --dark: #080808;
+        }
+
+        /* ================= 404 SECTION (dark full-bleed hero style) ================= */
+        .error-section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+
+            background-image: linear-gradient(rgba(8, 8, 8, 0.82),
+                    rgba(8, 8, 8, 0.93)),
+                url('https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1600&q=80');
+
+            background-size: cover;
+            background-position: center;
+
+            padding: 140px 20px 90px;
+        }
+
+        .error-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .error-num-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .error-num-row span.digit {
+            font-family: "Acme", sans-serif;
+            font-size: 140px;
+            color: white;
+            line-height: 1;
+        }
+
+        .error-num-row .zero-icon {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            border: 6px solid var(--pcolor);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .error-num-row .zero-icon span.material-symbols-outlined {
+            font-size: 46px;
+            color: var(--pcolor);
+        }
+
+        .error-content .sec-eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #f0a6b4;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .error-content h1 {
+            font-family: "Acme", sans-serif;
+            font-size: 40px;
+            color: white;
+            line-height: 1.25;
+            margin-bottom: 18px;
+        }
+
+        .error-content h1 span {
+            color: var(--pcolor);
+            -webkit-text-stroke: 1px #ff8fa0;
+        }
+
+        .error-content>p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #cfcfcf;
+            margin-bottom: 35px;
+        }
+
+        .error-search {
+            display: flex;
+            max-width: 460px;
+            margin: 0 auto 35px auto;
+            background: #ffffff10;
+            border: 1px solid #ffffff2a;
+            border-radius: 50px;
+            padding: 6px 6px 6px 22px;
+            align-items: center;
+        }
+
+        .error-search span.material-symbols-outlined {
+            color: #999;
+            font-size: 20px;
+        }
+
+        .error-search input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            outline: none;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .error-search input::placeholder {
+            color: #999;
+        }
+
+        .error-search button {
+            border: none;
+            background: var(--pcolor);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .error-search button:hover {
+            background: white;
+            color: var(--pcolor);
+        }
+
+        .error-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .error-pills a {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            text-decoration: none;
+            color: #e7e7e7;
+            font-size: 13px;
+            font-weight: bold;
+            border: 1px solid #ffffff2a;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: .3s ease;
+        }
+
+        .error-pills a span.material-symbols-outlined {
+            font-size: 16px;
+            color: var(--pcolor);
+        }
+
+        .error-pills a:hover {
+            background: var(--pcolor);
+            border-color: var(--pcolor);
+            color: white;
+        }
+
+        .error-pills a:hover span.material-symbols-outlined {
+            color: white;
+        }
+
+        .error-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 34px;
+            background: white;
+            border: none;
+            color: var(--dark);
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .error-home-btn span {
+            transform: rotate(-50deg);
+            transition: .5s ease;
+            font-size: 22px;
+        }
+
+        .error-home-btn::before {
+            content: "";
+            height: 100%;
+            width: 0%;
+            background: var(--pcolor);
+            transition: width .5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .error-home-btn:hover {
+            color: white;
+        }
+
+        .error-home-btn:hover::before {
+            width: 100%;
+        }
+
+        .error-home-btn:hover span {
+            transform: rotate(0deg);
+        }
+
+        
+        .error-btns{
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        @media (max-width:600px) {
+            .error-num-row span.digit {
+                font-size: 80px;
+            }
+
+            .error-num-row .zero-icon {
+                height: 62px;
+                width: 62px;
+            }
+
+            .error-num-row .zero-icon span.material-symbols-outlined {
+                font-size: 28px;
+            }
+
+            .error-content h1 {
+                font-size: 28px;
+            }
+
+            .error-search {
+                flex-wrap: wrap;
+                border-radius: 20px;
+                padding: 14px;
+                gap: 10px;
+            }
+
+            .error-search button {
+                width: 100%;
+            }
+
+             .error-btns{
+                flex-direction: column;
+                gap: 15px;
+             }
+
+              .error-btns a,
+              .error-btns .goback{
+                text-align: center;
+                display: flex;
+                justify-content: center;
+              }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <section class="error-section">
+        <div class="error-content">
+
+            <div class="error-num-row">
+                <span class="digit">4</span>
+                <div class="zero-icon"><span class="material-symbols-outlined">school</span></div>
+                <span class="digit">4</span>
+            </div>
+
+            <p class="sec-eyebrow"><span class="material-symbols-outlined" style="font-size:16px;">error</span>Error 404
+                - Page Not Found</p>
+            <h1>This Page Missed <span>Roll Call</span></h1>
+            <p>The page you're trying to reach isn't here anymore, or never existed. Search below or jump to
+                somewhere useful instead.</p>
+
+            <div class="error-search">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" placeholder="Search the university site...">
+                <button class="errorpage">Search</button>
+            </div>
+
+            <div class="error-pills">
+                <a href="about.html"><span class="material-symbols-outlined">info</span>About Us</a>
+                <a href="service.html"><span class="material-symbols-outlined">menu_book</span>Services</a>
+                <a href="blog.html"><span class="material-symbols-outlined">article</span>Blogs</a>
+                <a href="contact.html"><span class="material-symbols-outlined">mail</span>Contact</a>
+            </div>
+
+           <div class="error-btns">
+             <a href="index.html" class="error-home-btn">Back To Home<span
+                    class="material-symbols-outlined">arrow_right_alt</span></a>
+            <div class="error-home-btn goback">Go Back<span
+                    class="material-symbols-outlined">arrow_right_alt</span></div>
+           </div>
+
+        </div>
+    </section>
+
+
+    <script>
+
+        // errorpage
+
+        let errorpage = document.querySelectorAll(".errorpage")
+        errorpage.forEach((err) => {
+            err.addEventListener("click", () => {
+                window.location.href = "404.html"
+            })
+        })
+
+        // goback
+
+        let gback = document.querySelector(".goback")
+        gback.addEventListener("click", () => {
+            window.history.back()
+        })
+    </script>
+</body>
+
+</html>
