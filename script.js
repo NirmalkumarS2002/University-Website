@@ -101,3 +101,11 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal, .reveal-right, .reveal-left").forEach((el) => {
     observer.observe(el)
 })
+
+
+//
+
+let logicon=document.querySelector(".logicon")
+logicon.addEventListener("click",()=>{
+    window.location.href="login.html"
+})

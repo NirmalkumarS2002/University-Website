@@ -25,6 +25,11 @@ subscribeBtn.addEventListener("click", () => {
     // Success
     blogError.textContent = "Successfully subscribed!";
     blogError.style.color = "green";
-
     blogEmail.value = "";
+    setTimeout(() => {
+        blogError.textContent = "";
+    }, 3000)
+
+
+
 });

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University About - Page</title>
+    <title>University Blog - Page</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
@@ -197,10 +197,19 @@
         }
 
         .blg-banner-content .crumb {
-            color: #e7e7e7;
+            color: #e7e7e779;
             font-size: 15px;
             font-weight: 700;
         }
+
+          .blg-banner-content .crumb a{
+            color: white;
+            text-decoration: none;
+        }
+
+         .blg-banner-content a:hover{
+            color: var(--pcolor);
+         }
 
         .blg-banner-content .crumb span {
             color: var(--pcolor);
@@ -676,7 +685,7 @@
             <div class="blg-banner-content">
                 <p class="eyebrow reveal delay-1">Campus Stories</p>
                 <h1 class="reveal delay-2">Our Blog</h1>
-                <p class="crumb reveal delay-3">Home <span>/</span> Blogs</p>
+                <p class="crumb reveal delay-3"><a href="index.html">Home</a>  <span>/</span> Blogs</p>
             </div>
         </section>
 
